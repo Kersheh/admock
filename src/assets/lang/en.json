@@ -1,3 +1,12 @@
 {
-  "APP_TITLE": "AdMock (Alpha)"
+  "APP_TITLE": "AdMock (Alpha)",
+
+  "SIDEBAR_LOGO_TITLE_1": "Ad",
+  "SIDEBAR_LOGO_TITLE_2": "mock",
+  "SIDEBAR_LOGO_DESC": "Ad Mockup Previewer",
+
+  "MEDIA_TYPE_FACEBOOK": "Facebook",
+  "MEDIA_TYPE_INSTAGRAM": "Instagram",
+  "MEDIA_TYPE_TWITTER": "Twitter",
+  "MEDIA_TYPE_SNAPCHAT": "Snapchat"
 }

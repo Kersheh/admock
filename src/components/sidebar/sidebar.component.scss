@@ -1,3 +1,119 @@
-.sidebar {
+@import 'src/styles/abstract/colors';
+@import 'src/styles/abstract/mixins';
 
+@mixin collapse-width($width, $width-c: 0) {
+  @include cubic-transition(width);
+  overflow: hidden;
+  width: $width;
+
+  &--collapsed {
+    @include cubic-transition(width);
+    width: $width-c;
+  }
+}
+
+.sidebar {
+  @include collapse-width(200px, 55px);
+  height: 100vh;
+  background: $color-danube-blue;
+  color: $color-white;
+
+  &-container {
+    padding: 0 18px 0 22px;
+  }
+
+  &-logo {
+    cursor: default;
+    user-select: none;
+    color: $color-white;
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    padding-top: 18px;
+
+    &__text {
+      @include collapse-width(100%);
+      line-height: 36px;
+    }
+
+    &-desc {
+      @include collapse-width(100%);
+      user-select: none;
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      width: 100%;
+      white-space: nowrap;
+    }
+
+    .mat-button {
+      @include cubic-transition(right);
+      right: 0;
+      color: $color-white;
+      background: none;
+
+      .mat-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 24px;
+      }
+
+      &--collapsed {
+        @include cubic-transition(right);
+        right: 5px;
+      }
+    }
+  }
+
+  &-options {
+    margin-top: 36px;
+
+    &__option {
+      position: relative;
+      left: -6px;
+      width: 184px;
+
+      &:not(:last-child) {
+        padding-bottom: 18px;
+      }
+
+      &-btn {
+        width: 100%;
+        min-width: 42px;
+        padding-left: 8px;
+
+        &.active {
+          background-color: rgba($color-white, .1);
+        }
+      }
+
+      &-text {
+        margin-left: 22px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .collapse-btn {
+    margin-right: 6px;
+
+    .mat-button {
+      @include cubic-transition(transform);
+      transform: rotateY(0deg);
+      background: none;
+
+      &--collapsed {
+        @include cubic-transition(transform);
+        transform: rotateY(180deg);
+      }
+    }
+
+    mat-icon {
+      color: $color-white;
+      height: 42px;
+      width: 42px;
+      font-size: 42px;
+    }
+  }
 }

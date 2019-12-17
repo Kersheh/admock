@@ -7,7 +7,8 @@ import {
   MatInputModule,
   MatFormFieldModule,
   MatRadioModule,
-  MatDialogModule
+  MatDialogModule,
+  MatRippleModule
 } from '@angular/material';
 
 @NgModule({
@@ -19,7 +20,8 @@ import {
     MatInputModule,
     MatFormFieldModule,
     MatRadioModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRippleModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -29,7 +31,8 @@ import {
     MatInputModule,
     MatFormFieldModule,
     MatRadioModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRippleModule
   ]
 })
 export class AppMaterialModule {}
