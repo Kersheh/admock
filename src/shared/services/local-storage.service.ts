@@ -10,8 +10,8 @@ interface Store {
   providedIn: 'root'
 })
 export class LocalStorageService {
-  private activeUser: string | null = null;
-  private store: Store = {};
+  public activeUser: string | null = null;
+  public store: Store = {};
 
   constructor(
     private logger: LoggerService

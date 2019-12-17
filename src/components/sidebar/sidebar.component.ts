@@ -19,25 +19,26 @@ export class SidebarComponent implements OnInit {
     isCollapsed: false,
     category: CONSTANTS.MEDIA_TYPES.FACEBOOK
   };
+  public STORE_NAME = 'app-sidebar';
   public MEDIA_TYPES = CONSTANTS.MEDIA_TYPES;
 
   constructor(
-    private localStorageService: LocalStorageService,
-    private viewService: ViewService
+    public localStorageService: LocalStorageService,
+    public viewService: ViewService
   ) {}
 
   ngOnInit() {
-    this.state = this.localStorageService.getUserLocalStorage('app-sidebar', this.state);
+    this.state = this.localStorageService.getUserLocalStorage(this.STORE_NAME, this.state);
   }
 
   toggleCollapse(): void {
     this.state.isCollapsed = !this.state.isCollapsed;
-    this.localStorageService.setUserLocalStorage('app-sidebar', this.state);
+    this.localStorageService.setUserLocalStorage(this.STORE_NAME, this.state);
   }
 
   setMediaType(mediaType: string): void {
     this.state.category = mediaType;
-    this.localStorageService.setUserLocalStorage('app-sidebar', this.state);
+    this.localStorageService.setUserLocalStorage(this.STORE_NAME, this.state);
 
     this.viewService.changeView(mediaType);
   }

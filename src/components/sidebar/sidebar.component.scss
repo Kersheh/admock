@@ -17,9 +17,11 @@
   height: 100vh;
   background: $color-danube-blue;
   color: $color-white;
+  border-right: 2px solid rgba($color-kilamanjaro-gray, .1);
+  box-sizing: border-box;
 
   &-container {
-    padding: 0 18px 0 22px;
+    padding: 0 18px;
   }
 
   &-logo {
@@ -48,8 +50,6 @@
     }
 
     .mat-button {
-      @include cubic-transition(right);
-      right: 0;
       color: $color-white;
       background: none;
 
@@ -57,11 +57,6 @@
         width: 24px;
         height: 24px;
         font-size: 24px;
-      }
-
-      &--collapsed {
-        @include cubic-transition(right);
-        right: 5px;
       }
     }
   }
@@ -72,7 +67,7 @@
     &__option {
       position: relative;
       left: -6px;
-      width: 184px;
+      width: 188px;
 
       &:not(:last-child) {
         padding-bottom: 18px;

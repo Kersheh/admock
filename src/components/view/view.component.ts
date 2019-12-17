@@ -19,6 +19,7 @@ export class ViewComponent implements OnInit, OnDestroy {
   public state: ViewState = {
     activeView: CONSTANTS.MEDIA_TYPES.FACEBOOK
   };
+  public STORE_NAME = 'app-view';
   public MEDIA_TYPES = CONSTANTS.MEDIA_TYPES;
 
   constructor(
@@ -32,7 +33,7 @@ export class ViewComponent implements OnInit, OnDestroy {
       this.localStorageService.setUserLocalStorage('app-view', this.state);
     });
 
-    this.state = this.localStorageService.getUserLocalStorage('app-view', this.state);
+    this.state = this.localStorageService.getUserLocalStorage(this.STORE_NAME, this.state);
     this.viewService.changeView(this.state.activeView);
   }
 

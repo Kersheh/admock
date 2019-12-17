@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SocialMediaIconComponent } from './social-media-icon.component';
 
@@ -8,7 +9,12 @@ describe('SocialMediaIconComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SocialMediaIconComponent ]
+      imports: [
+        FontAwesomeModule
+      ],
+      declarations: [
+        SocialMediaIconComponent
+      ]
     })
     .compileComponents();
   }));

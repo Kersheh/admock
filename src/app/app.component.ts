@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 
+// import project info
+import info from 'src/../package.json';
+
 // import language json ahead of time
 import defaultLanguage from 'src/assets/lang/en.json';
 
@@ -19,8 +22,9 @@ export class AppComponent {
     translate.setTranslation('en', defaultLanguage);
     translate.setDefaultLang('en');
 
+    // set browser title
     this.translate.get('APP_TITLE').subscribe(title => {
-      this.titleService.setTitle(title);
+      this.titleService.setTitle(`${title} — v${info.version}`);
     });
   }
 }
