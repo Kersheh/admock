@@ -1,0 +1,43 @@
+@import 'src/styles/abstract/colors';
+
+html {
+  min-height: 100%;
+  width: 100%;
+  -webkit-font-smoothing: antialiased; // sass-lint:disable-line no-vendor-prefixes
+
+  body {
+    height: 100%;
+    background-color: $color-white;
+    color: $color-kilamanjaro-gray;
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+
+    [hidden] {
+      display: none !important; //sass-lint:disable-line no-important
+    }
+
+    a,
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: $color-danube-blue;
+      text-decoration: none;
+      font-weight: 700;
+
+      &:hover {
+        opacity: .7;
+      }
+    }
+
+    .hide-outline {
+      a,
+      button,
+      input {
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}
