@@ -9,8 +9,7 @@
     "build": "ng build",
     "build:prod": "ng build --prod",
     "test": "ng test",
-    "lint": "sass-lint -c .sass-lint.yml 'src/**/*.scss' -v -q && ng lint",
-    "e2e": "ng e2e"
+    "lint": "sass-lint -c .sass-lint.yml 'src/**/*.scss' -v -q && ng lint"
   },
   "dependencies": {
     "@angular/animations": "~8.2.14",

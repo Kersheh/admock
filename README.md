@@ -1,10 +1,10 @@
 # Admock
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
+Admock frontend web client.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server, application should open automatically in your browser at `http://127.0.0.1:5000/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -12,16 +12,16 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Build Production
+
+Run `npm run build:prod` to build the production version of the project. The build artifacts will also be stored in the `dist/` directory and replace build located there.
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Linting
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Run `npm run lint` to execute Sass linter and Typescript linter.

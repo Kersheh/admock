@@ -16,19 +16,19 @@ export class LoggerService {
   public PROD = environment.production;
 
   log(level: LogLevel, ...msgs: Array<any>) {
-    switch (level) {
+    switch(level) {
       case LogLevel.INFO:
-        if (!this.PROD) {
+        if(!this.PROD) {
           console.info(...msgs);
         }
         break;
       case LogLevel.LOG:
-        if (!this.PROD) {
+        if(!this.PROD) {
           console.log(...msgs);
         }
         break;
       case LogLevel.WARN:
-        if (!this.PROD) {
+        if(!this.PROD) {
           console.warn(...msgs);
         }
         break;
