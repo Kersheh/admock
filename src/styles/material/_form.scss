@@ -1,0 +1,23 @@
+@import 'src/styles/abstract/colors';
+
+mat-form-field {
+  .mat-input-element {
+    caret-color: $color-danube-blue;
+  }
+
+  &.mat-form-field.mat-focused {
+    .mat-form-field-label {
+      color: $color-danube-blue;
+    }
+
+    .mat-form-field-ripple {
+      background-color: $color-danube-blue;
+    }
+  }
+
+  &.mat-form-field.mat-form-field-invalid {
+    .mat-form-field-label {
+      color: $color-cinnabar;
+    }
+  }
+}

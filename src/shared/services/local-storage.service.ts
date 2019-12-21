@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { LoggerService, LogLevel } from 'src/shared/services/logger.service';
+import { UserService, User } from 'src/shared/services/user.service';
 
 interface Store {
   [key: string]: any;
@@ -10,23 +11,24 @@ interface Store {
   providedIn: 'root'
 })
 export class LocalStorageService {
-  public activeUser: string | null = null;
+  public activeUser = 'default';
   public store: Store = {};
 
   constructor(
-    private logger: LoggerService
+    private logger: LoggerService,
+    private userService: UserService
   ) {
-    // testing without user system
-    this.activeUser = 'testUser';
-
-    this.loadUserLocalStorage();
+    this.userService.user.subscribe((user: User) => {
+      this.activeUser = user ? user.userID : 'default';
+      this.loadUserLocalStorage();
+    });
   }
 
   loadUserLocalStorage(): void {
     const store = JSON.parse(localStorage.getItem(this.activeUser));
     this.store = store ? store : {};
 
-    this.logger.log(LogLevel.INFO, `Loaded local storage for user ${this.activeUser}`, this.store);
+    this.logger.log(LogLevel.INFO, `Loaded local storage for userID ${this.activeUser}`, this.store);
   }
 
   setUserLocalStorage(key: string, value: any): void {

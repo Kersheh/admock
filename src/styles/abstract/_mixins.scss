@@ -1,4 +1,4 @@
-@mixin cubic-transition($prop, $time: .6s) {
+@mixin cubic-transition($prop: all, $time: .6s) {
   transition: $prop $time cubic-bezier(.85, -.12, .77, .46);
 }
 

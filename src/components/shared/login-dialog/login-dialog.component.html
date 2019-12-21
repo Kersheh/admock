@@ -1,0 +1,35 @@
+<div class="login-dialog" fxLayout="column" fxLayoutAlign="space-between">
+  <div fxLayout="column">
+    <h1 translate>LOGIN_DIALOG_TITLE</h1>
+
+    <form fxLayout="column" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+      <mat-form-field>
+        <input matInput [placeholder]="'LOGIN_FORM_EMAIL' | translate" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [placeholder]="'LOGIN_FORM_PASSWORD' | translate"
+               formControlName="password" [type]="hidePassword ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <button mat-stroked-button class="mat-stroked-button--blue" (click)="submitLogin()">
+      <span translate>LOGIN_DIALOG_REGISTER_BTN</span>
+    </button>
+
+    <div fxLayout="row" fxLayoutAlign="space-between">
+      <button mat-stroked-button class="mat-stroked-button--red" (click)="dialogRef.close()">
+        <span translate>LOGIN_DIALOG_CANCEL_BTN</span>
+      </button>
+
+      <button mat-raised-button class="login-dialog__submit-btn mat-raised-button--blue" (click)="submitLogin()">
+        <span translate>LOGIN_DIALOG_SUBMIT_BTN</span>
+      </button>
+    </div>
+  </div>
+</div>

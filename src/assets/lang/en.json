@@ -4,9 +4,33 @@
   "SIDEBAR_LOGO_TITLE_1": "Ad",
   "SIDEBAR_LOGO_TITLE_2": "mock",
   "SIDEBAR_LOGO_DESC": "Ad Mockup Previewer",
+  "SIDEBAR_PROFILE_MENU_PROFILE": "Profile",
+  "SIDEBAR_PROFILE_MENU_LOGOUT": "Logout",
+
+  "VIEW_TITLE_FACEBOOK": "Facebook",
+  "VIEW_TITLE_INSTAGRAM": "Instagram",
+  "VIEW_TITLE_TWITTER": "Twitter",
+  "VIEW_TITLE_SNAPCHAT": "Snapchat",
+  "VIEW_TITLE_PROFILE": "Profile",
 
   "MEDIA_TYPE_FACEBOOK": "Facebook",
   "MEDIA_TYPE_INSTAGRAM": "Instagram",
   "MEDIA_TYPE_TWITTER": "Twitter",
-  "MEDIA_TYPE_SNAPCHAT": "Snapchat"
+  "MEDIA_TYPE_GOOGLE_SEARCH": "Google Search",
+  "MEDIA_TYPE_GOOGLE_DISPLAY": "Google Display",
+  "MEDIA_TYPE_PINTEREST": "Pinterest",
+  "MEDIA_TYPE_SNAPCHAT": "Snapchat",
+  "MEDIA_TYPE_LINKEDIN": "LinkedIn",
+  "MEDIA_TYPE_TIKTOK": "TikTok",
+
+  "LOGIN_DIALOG_TITLE": "Login",
+  "LOGIN_FORM_EMAIL": "Email",
+  "LOGIN_FORM_PASSWORD": "Password",
+  "LOGIN_DIALOG_REGISTER_BTN": "Register",
+  "LOGIN_DIALOG_CANCEL_BTN": "Cancel",
+  "LOGIN_DIALOG_SUBMIT_BTN": "Submit",
+
+  "PROFILE_FORM_EMAIL": "Email",
+  "PROFILE_FORM_FIRST_NAME": "First Name",
+  "PROFILE_FORM_LAST_NAME": "Last Name"
 }

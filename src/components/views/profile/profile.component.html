@@ -1,0 +1,29 @@
+<div class="profile" fxLayout="column" fxLayoutAlign="space-between">
+  <div fxLayout="column">
+    <h1 translate>VIEW_TITLE_PROFILE</h1>
+
+    <form fxLayout="column" [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+      <mat-form-field>
+        <input matInput [placeholder]="'PROFILE_FORM_EMAIL' | translate" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [placeholder]="'PROFILE_FORM_FIRST_NAME' | translate" formControlName="firstName">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [placeholder]="'PROFILE_FORM_LAST_NAME' | translate" formControlName="lastName">
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="end">
+    <button *ngIf="!isEdit" mat-stroked-button class="mat-stroked-button--blue" (click)="toggleEdit()">
+      <span translate>Edit</span>
+    </button>
+
+    <button *ngIf="isEdit" mat-stroked-button class="mat-stroked-button--blue" (click)="updateProfile()">
+      <span translate>Save</span>
+    </button>
+  </div>
+</div>

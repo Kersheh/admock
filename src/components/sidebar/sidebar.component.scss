@@ -14,7 +14,7 @@
 
 .sidebar {
   @include collapse-width(200px, 55px);
-  height: 100vh;
+  height: 100%;
   background: $color-danube-blue;
   color: $color-white;
   border-right: 2px solid rgba($color-kilamanjaro-gray, .1);
@@ -22,6 +22,11 @@
 
   &-container {
     padding: 0 18px;
+
+    &--scroll-overflow {
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
   }
 
   &-logo {
@@ -68,10 +73,7 @@
       position: relative;
       left: -6px;
       width: 188px;
-
-      &:not(:last-child) {
-        padding-bottom: 18px;
-      }
+      padding-bottom: 8px;
 
       &-btn {
         width: 100%;
@@ -84,10 +86,100 @@
       }
 
       &-text {
-        margin-left: 22px;
+        margin-left: 23px;
         font-weight: 500;
       }
     }
+  }
+
+  .profile-btn {
+    margin: 0 6px 6px 0;
+
+    .mat-button {
+      @include cubic-transition;
+      border: $color-white solid 1px;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+
+      &.no-user {
+        @include cubic-transition;
+        border: 0;
+        border-radius: 0;
+      }
+    }
+
+    mat-icon {
+      color: $color-white;
+      height: 30px;
+      width: 30px;
+      font-size: 30px;
+    }
+  }
+
+  .profile-menu {
+    $this: &;
+
+    @include cubic-transition(left);
+    position: absolute;
+    left: 196px;
+    bottom: 0;
+    z-index: 1;
+
+    &-container {
+      @include cubic-transition;
+      overflow: hidden;
+      width: 0;
+      color: $color-kilamanjaro-gray;
+      background: $color-danube-blue;
+      border-left: 2px solid $color-danube-blue;
+      border-radius: 1px;
+
+      &--active {
+        @include cubic-transition;
+        width: 100px;
+        border-left: 1px solid $color-white;
+      }
+    }
+
+    &--active {
+      left: 200px;
+    }
+
+    &--collapsed {
+      @include cubic-transition(left);
+      left: 51px;
+
+      // not working ??? see &.profile-menu--collapsed.profile-menu--active
+      &#{$this}--active#{$this} {
+        left: 55px;
+      }
+    }
+
+    &.profile-menu--collapsed.profile-menu--active {
+      left: 55px;
+    }
+
+    &__btn {
+      min-width: 80px;
+    }
+
+    .mat-button {
+      color: $color-white;
+      width: 100%;
+      padding: 3px 8px 3px 12px;
+      font-weight: 500;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $color-white;
+      }
+    }
+  }
+
+  &-divider {
+    margin: 0 5% 4px;
+    width: 90%;
+    border-top-color: rgba($color-white, .2);
   }
 
   .collapse-btn {

@@ -1,6 +1,7 @@
 @import 'src/styles/abstract/colors';
 
 html {
+  height: 100%;
   min-height: 100%;
   width: 100%;
   overflow-y: scroll;
@@ -8,7 +9,7 @@ html {
 
   body {
     height: 100%;
-    min-height: 100vh;
+    min-height: 100%;
     background-color: $color-white;
     color: $color-cape-cod;
     font-family: 'Roboto', 'Helvetica Neue', sans-serif;

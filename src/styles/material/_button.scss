@@ -1,9 +1,41 @@
-button.mat-button {
-  min-width: 24px;
-  padding: 0;
-  border-radius: 0;
+@import 'src/styles/abstract/colors';
 
-  &.no-hover .mat-button-focus-overlay {
-    opacity: 0;
+button {
+  &.mat-button {
+    min-width: 24px;
+    padding: 0;
+    border-radius: 0;
+
+    &.no-hover .mat-button-focus-overlay {
+      opacity: 0;
+    }
+  }
+
+  &.mat-raised-button {
+    border-radius: 0;
+
+    &--blue {
+      color: $color-white;
+      background-color: $color-danube-blue;
+    }
+
+    &--red {
+      color: $color-white;
+      background-color: $color-cinnabar;
+    }
+  }
+
+  &.mat-stroked-button {
+    border-radius: 0;
+
+    &--blue {
+      color: $color-danube-blue;
+      border-color: $color-danube-blue;
+    }
+
+    &--red {
+      color: $color-cinnabar;
+      border-color: $color-cinnabar;
+    }
   }
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 // imports
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CookieService } from 'ngx-cookie-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // app config
@@ -14,8 +15,12 @@ import { SidebarComponent } from 'src/components/sidebar/sidebar.component';
 import { ViewComponent } from 'src/components/view/view.component';
 import { FooterComponent } from 'src/components/footer/footer.component';
 
+// view components
+import { ProfileComponent } from 'src/components/views/profile/profile.component';
+
 // shared components
 import { SocialMediaIconComponent } from 'src/components/shared/social-media-icon/social-media-icon.component';
+import { LoginDialogComponent } from 'src/components/shared/login-dialog/login-dialog.component';
 
 @NgModule({
   imports: [
@@ -29,11 +34,18 @@ import { SocialMediaIconComponent } from 'src/components/shared/social-media-ico
     SidebarComponent,
     SocialMediaIconComponent,
     ViewComponent,
-    FooterComponent
+    FooterComponent,
+    LoginDialogComponent,
+    ProfileComponent
   ],
-  providers: [],
+  providers: [
+    CookieService
+  ],
   bootstrap: [
     AppComponent
+  ],
+  entryComponents: [
+    LoginDialogComponent
   ]
 })
 export class AppModule {}

@@ -3,6 +3,11 @@ export default Object.freeze({
     FACEBOOK: 'facebook',
     INSTAGRAM: 'instagram',
     TWITTER: 'twitter',
-    SNAPCHAT: 'snapchat'
+    GOOGLE_SEARCH: 'google_search',
+    GOOGLE_DISPLAY: 'google_display',
+    PINTEREST: 'pinterest',
+    SNAPCHAT: 'snapchat',
+    LINKEDIN: 'linkedin',
+    TIKTOK: 'tiktok'
   }
 });

@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
@@ -8,12 +10,16 @@ import {
   MatFormFieldModule,
   MatRadioModule,
   MatDialogModule,
-  MatRippleModule
+  MatRippleModule,
+  MatMenuModule,
+  MatDividerModule
 } from '@angular/material';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
@@ -21,10 +27,14 @@ import {
     MatFormFieldModule,
     MatRadioModule,
     MatDialogModule,
-    MatRippleModule
+    MatRippleModule,
+    MatMenuModule,
+    MatDividerModule
   ],
   exports: [
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
@@ -32,7 +42,9 @@ import {
     MatFormFieldModule,
     MatRadioModule,
     MatDialogModule,
-    MatRippleModule
+    MatRippleModule,
+    MatMenuModule,
+    MatDividerModule
   ]
 })
 export class AppMaterialModule {}

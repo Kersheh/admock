@@ -16,58 +16,57 @@
     <div class="sidebar-logo-desc" [ngClass]="{'sidebar-logo-desc--collapsed': state?.isCollapsed}">
       <span translate>SIDEBAR_LOGO_DESC</span>
     </div>
+  </div>
 
+  <div class="sidebar-container sidebar-container--scroll-overflow" fxLayout="column">
     <div class="sidebar-options">
-      <div class="sidebar-options__option" fxLayout="row">
+      <div *ngFor="let mediaType of MEDIA_TYPE_VIEWS" class="sidebar-options__option" fxLayout="row">
         <button mat-button class="sidebar-options__option-btn"
-                (click)="setMediaType(MEDIA_TYPES.FACEBOOK)"
-                [ngClass]="{'active': state?.category === MEDIA_TYPES.FACEBOOK}">
+                (click)="setView(mediaType)"
+                [ngClass]="{'active': state?.category === mediaType}">
           <div fxLayout="row" fxLayoutAlign="start center">
-            <app-social-media-icon icon="facebook"></app-social-media-icon>
-            <span class="sidebar-options__option-text" translate>MEDIA_TYPE_FACEBOOK</span>
-          </div>
-        </button>
-      </div>
-
-      <div class="sidebar-options__option" fxLayout="row">
-        <button mat-button class="sidebar-options__option-btn"
-                (click)="setMediaType(MEDIA_TYPES.INSTAGRAM)"
-                [ngClass]="{'active': state?.category === MEDIA_TYPES.INSTAGRAM}">
-          <div fxLayout="row" fxLayoutAlign="start center">
-            <app-social-media-icon icon="instagram"></app-social-media-icon>
-            <span class="sidebar-options__option-text" translate>MEDIA_TYPE_INSTAGRAM</span>
-          </div>
-        </button>
-      </div>
-
-      <div class="sidebar-options__option" fxLayout="row">
-        <button mat-button class="sidebar-options__option-btn"
-                (click)="setMediaType(MEDIA_TYPES.TWITTER)"
-                [ngClass]="{'active': state?.category === MEDIA_TYPES.TWITTER}">
-          <div fxLayout="row" fxLayoutAlign="start center">
-            <app-social-media-icon icon="twitter"></app-social-media-icon>
-            <span class="sidebar-options__option-text" translate>MEDIA_TYPE_TWITTER</span>
-          </div>
-        </button>
-      </div>
-
-      <div class="sidebar-options__option" fxLayout="row">
-        <button mat-button class="sidebar-options__option-btn"
-                (click)="setMediaType(MEDIA_TYPES.SNAPCHAT)"
-                [ngClass]="{'active': state?.category === MEDIA_TYPES.SNAPCHAT}">
-          <div fxLayout="row" fxLayoutAlign="start center">
-            <app-social-media-icon icon="snapchat"></app-social-media-icon>
-            <span class="sidebar-options__option-text" translate>MEDIA_TYPE_SNAPCHAT</span>
+            <app-social-media-icon [icon]="mediaType"></app-social-media-icon>
+            <span class="sidebar-options__option-text">{{ MEDIA_TYPE_TRANSLATIONS[mediaType] | translate }}</span>
           </div>
         </button>
       </div>
     </div>
   </div>
 
-  <div class="collapse-btn" fxLayout="row" fxLayoutAlign="end">
-    <button mat-button (click)="toggleCollapse()"
-            [ngClass]="{'mat-button--collapsed': state?.isCollapsed}">
-      <mat-icon>keyboard_arrow_left</mat-icon>
-    </button>
+  <div fxLayout="column">
+    <!-- <div class="profile-btn" fxLayout="row" fxLayoutAlign="end">
+      <button mat-button (click)="toggleProfileMenu()"
+              [ngClass]="{'no-user': !isLoggedIn}">
+        <mat-icon *ngIf="isLoggedIn">face</mat-icon>
+        <mat-icon *ngIf="!isLoggedIn">exit_to_app</mat-icon>
+      </button>
+    </div> -->
+
+    <mat-divider class="sidebar-divider"></mat-divider>
+
+    <div class="collapse-btn" fxLayout="row" fxLayoutAlign="end">
+      <button mat-button (click)="toggleCollapse()"
+              [ngClass]="{'mat-button--collapsed': state?.isCollapsed}">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+    </div>
   </div>
+
+  <!-- <div class="profile-menu" [ngClass]="{'profile-menu--collapsed': state?.isCollapsed, 'profile-menu--active': showProfileMenu}">
+    <div class="profile-menu-container" fxLayout="column" fxLayoutAlign="center start"
+         [ngClass]="{'profile-menu-container--active': showProfileMenu}">
+      <button mat-button [tabindex]="!showProfileMenu ? -1 : 0" (click)="openProfile()">
+        <div class="profile-menu__btn" fxLayoutAlign="space-between center">
+          <span translate>SIDEBAR_PROFILE_MENU_PROFILE</span>
+          <mat-icon>account_box</mat-icon>
+        </div>
+      </button>
+      <button mat-button [tabindex]="!showProfileMenu ? -1 : 0" (click)="logout()">
+        <div class="profile-menu__btn" fxLayoutAlign="space-between center">
+          <span translate>SIDEBAR_PROFILE_MENU_LOGOUT</span>
+          <mat-icon>exit_to_app</mat-icon>
+        </div>
+      </button>
+    </div>
+  </div> -->
 </div>

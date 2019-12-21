@@ -1,0 +1,7 @@
+.cdk-overlay-container {
+  mat-dialog-container {
+    &.mat-dialog-container {
+      border-radius: 0;
+    }
+  }
+}

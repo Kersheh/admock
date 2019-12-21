@@ -20,7 +20,10 @@ export class ViewComponent implements OnInit, OnDestroy {
     activeView: CONSTANTS.MEDIA_TYPES.FACEBOOK
   };
   public STORE_NAME = 'app-view';
-  public MEDIA_TYPES = CONSTANTS.MEDIA_TYPES;
+  public VIEWS = {
+    ...CONSTANTS.MEDIA_TYPES,
+    PROFILE: 'profile'
+  };
 
   constructor(
     public viewService: ViewService,
