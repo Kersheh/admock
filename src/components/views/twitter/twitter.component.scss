@@ -1,0 +1,5 @@
+@import 'src/styles/abstract/mixins';
+
+.twitter {
+  @include view-layout;
+}

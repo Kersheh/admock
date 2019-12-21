@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { timer } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { map } from 'lodash';
 
 import CONSTANTS from 'src/shared/constants';
 import { LocalStorageService } from 'src/shared/services/local-storage.service';
-import { ViewService } from 'src/shared/services/view.service';
 import { UserService, User } from 'src/shared/services/user.service';
 // import { LoginDialogComponent } from 'src/components/shared/login-dialog/login-dialog.component';
 
@@ -19,7 +20,7 @@ interface SidebarState {
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
   public state: SidebarState = {
     isCollapsed: false,
     category: CONSTANTS.MEDIA_TYPES.FACEBOOK
@@ -27,11 +28,10 @@ export class SidebarComponent implements OnInit {
   public isLoggedIn = false;
   public showProfileMenu = false;
   public lockProfileMenuBtn = false;
+  public user$: Subscription;
+  public router$: Subscription;
+
   public STORE_NAME = 'app-sidebar';
-  // public VIEWS = {
-  //   ...CONSTANTS.MEDIA_TYPES,
-  //   PROFILE: 'profile'
-  // };
   public MEDIA_TYPE_VIEWS = map(CONSTANTS.MEDIA_TYPES);
   public MEDIA_TYPE_TRANSLATIONS = {
     [CONSTANTS.MEDIA_TYPES.FACEBOOK]: 'MEDIA_TYPE_FACEBOOK',
@@ -47,17 +47,29 @@ export class SidebarComponent implements OnInit {
 
   constructor(
     public localStorageService: LocalStorageService,
-    public viewService: ViewService,
     public userService: UserService,
+    public router: Router,
     public dialog: MatDialog
   ) {}
 
   ngOnInit() {
     this.state = this.localStorageService.getUserLocalStorage(this.STORE_NAME, this.state);
 
-    this.userService.user.subscribe((user: User) => {
+    this.user$ = this.userService.user.subscribe((user: User) => {
       this.isLoggedIn = user ? true : false;
     });
+
+    this.router$ = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.state.category = event.url.slice(1);
+      this.localStorageService.setUserLocalStorage(this.STORE_NAME, this.state);
+    });
+  }
+
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    this.router$.unsubscribe();
   }
 
   toggleCollapse(): void {
@@ -65,15 +77,14 @@ export class SidebarComponent implements OnInit {
     this.state.isCollapsed = !this.state.isCollapsed;
     this.localStorageService.setUserLocalStorage(this.STORE_NAME, this.state);
 
-    this.lockProfileMenuBtn = true;
-    timer(600).subscribe(() => this.lockProfileMenuBtn = false);
+    // this.lockProfileMenuBtn = true;
+    // timer(600).subscribe(() => this.lockProfileMenuBtn = false);
   }
 
   setView(view: string): void {
+    console.log(view);
     this.state.category = view;
     this.localStorageService.setUserLocalStorage(this.STORE_NAME, this.state);
-
-    this.viewService.changeView(view);
   }
 
   // toggleProfileMenu(): void {

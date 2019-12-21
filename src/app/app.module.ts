@@ -8,14 +8,23 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // app config
 import { AppMaterialModule } from './app-material.module';
 import { AppTranslateModule } from './app-translate.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 // components
 import { SidebarComponent } from 'src/components/sidebar/sidebar.component';
-import { ViewComponent } from 'src/components/view/view.component';
 import { FooterComponent } from 'src/components/footer/footer.component';
 
 // view components
+import { FacebookComponent } from 'src/components/views/facebook/facebook.component';
+import { InstagramComponent } from 'src/components/views/instagram/instagram.component';
+import { TwitterComponent } from 'src/components/views/twitter/twitter.component';
+import { GoogleSearchComponent } from 'src/components/views/google-search/google-search.component';
+import { GoogleDisplayComponent } from 'src/components/views/google-display/google-display.component';
+import { PinterestComponent } from 'src/components/views/pinterest/pinterest.component';
+import { SnapchatComponent } from 'src/components/views/snapchat/snapchat.component';
+import { LinkedinComponent } from 'src/components/views/linkedin/linkedin.component';
+import { TiktokComponent } from 'src/components/views/tiktok/tiktok.component';
 import { ProfileComponent } from 'src/components/views/profile/profile.component';
 
 // shared components
@@ -26,6 +35,7 @@ import { LoginDialogComponent } from 'src/components/shared/login-dialog/login-d
   imports: [
     AppMaterialModule,
     AppTranslateModule,
+    AppRoutingModule,
     FlexLayoutModule,
     FontAwesomeModule
   ],
@@ -33,10 +43,18 @@ import { LoginDialogComponent } from 'src/components/shared/login-dialog/login-d
     AppComponent,
     SidebarComponent,
     SocialMediaIconComponent,
-    ViewComponent,
     FooterComponent,
     LoginDialogComponent,
-    ProfileComponent
+    ProfileComponent,
+    FacebookComponent,
+    InstagramComponent,
+    TwitterComponent,
+    GoogleSearchComponent,
+    GoogleDisplayComponent,
+    PinterestComponent,
+    SnapchatComponent,
+    LinkedinComponent,
+    TiktokComponent
   ],
   providers: [
     CookieService

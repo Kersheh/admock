@@ -23,6 +23,7 @@
       <div *ngFor="let mediaType of MEDIA_TYPE_VIEWS" class="sidebar-options__option" fxLayout="row">
         <button mat-button class="sidebar-options__option-btn"
                 (click)="setView(mediaType)"
+                [routerLink]="mediaType"
                 [ngClass]="{'active': state?.category === mediaType}">
           <div fxLayout="row" fxLayoutAlign="start center">
             <app-social-media-icon [icon]="mediaType"></app-social-media-icon>

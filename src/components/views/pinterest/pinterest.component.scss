@@ -1,0 +1,5 @@
+@import 'src/styles/abstract/mixins';
+
+.pinterest {
+  @include view-layout;
+}
