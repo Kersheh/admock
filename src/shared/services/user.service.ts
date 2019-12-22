@@ -29,7 +29,7 @@ export class UserService {
     private cookieService: CookieService,
     private loggerService: LoggerService
   ) {
-    this.loadUser();
+    // this.loadUser();
   }
 
   loadUser(): void {

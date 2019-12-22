@@ -1,5 +1,5 @@
 @mixin view-layout {
-  padding: 24px 12px 0;
+  padding: 24px;
 }
 
 @mixin cubic-transition($prop: all, $time: .6s) {

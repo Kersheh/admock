@@ -1,4 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogRef } from '@angular/material';
+
+import { AppMaterialModule } from 'src/app/app-material.module';
+import { AppTranslateModule } from 'src/app/app-translate.module';
 
 import { LoginDialogComponent } from './login-dialog.component';
 
@@ -8,7 +12,21 @@ describe('LoginDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginDialogComponent ]
+      imports: [
+        AppMaterialModule,
+        AppTranslateModule
+      ],
+      declarations: [
+        LoginDialogComponent
+      ],
+      providers: [
+        {
+          provide: MatDialogRef,
+          useValue: {
+            close: () => {}
+          }
+        }
+      ]
     })
     .compileComponents();
   }));

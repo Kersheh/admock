@@ -7,7 +7,7 @@ import { map } from 'lodash';
 
 import CONSTANTS from 'src/shared/constants';
 import { LocalStorageService } from 'src/shared/services/local-storage.service';
-import { UserService, User } from 'src/shared/services/user.service';
+// import { UserService, User } from 'src/shared/services/user.service';
 // import { LoginDialogComponent } from 'src/components/shared/login-dialog/login-dialog.component';
 
 interface SidebarState {
@@ -28,7 +28,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   public isLoggedIn = false;
   public showProfileMenu = false;
   public lockProfileMenuBtn = false;
-  public user$: Subscription;
+  // public user$: Subscription;
   public router$: Subscription;
 
   public STORE_NAME = 'app-sidebar';
@@ -47,7 +47,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   constructor(
     public localStorageService: LocalStorageService,
-    public userService: UserService,
+    // public userService: UserService,
     public router: Router,
     public dialog: MatDialog
   ) {}
@@ -55,9 +55,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.state = this.localStorageService.getUserLocalStorage(this.STORE_NAME, this.state);
 
-    this.user$ = this.userService.user.subscribe((user: User) => {
-      this.isLoggedIn = user ? true : false;
-    });
+    // this.user$ = this.userService.user.subscribe((user: User) => {
+    //   this.isLoggedIn = user ? true : false;
+    // });
 
     this.router$ = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
@@ -68,7 +68,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.user$.unsubscribe();
+    // this.user$.unsubscribe();
     this.router$.unsubscribe();
   }
 

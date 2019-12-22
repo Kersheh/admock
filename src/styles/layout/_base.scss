@@ -28,23 +28,28 @@ html {
       font-weight: 500;
       letter-spacing: -1px;
       color: $color-cape-cod;
+      margin: 8px 0;
+
+      &.alt {
+        color: $color-white;
+      }
     }
 
     h1 {
-      font-size: 32px;
+      font-size: 2.3em;
     }
 
     h2 {
-      font-size: 28px;
+      font-size: 2em;
     }
 
     h3 {
-      font-size: 24px;
+      font-size: 1.7em;
     }
 
     h4 {
+      font-size: 1.3em;
       font-weight: 700;
-      font-size: 18px;
     }
 
     a,
@@ -67,14 +72,14 @@ html {
       font-weight: 700;
     }
 
-    .hide-outline {
-      a,
-      button,
-      input {
-        &:focus {
-          outline: none;
-        }
-      }
-    }
+    // .hide-outline {
+    //   a,
+    //   button,
+    //   input {
+    //     &:focus {
+    //       outline: none;
+    //     }
+    //   }
+    // }
   }
 }

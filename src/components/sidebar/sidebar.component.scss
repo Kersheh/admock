@@ -97,7 +97,7 @@
 
     .mat-button {
       @include cubic-transition;
-      border: $color-white solid 1px;
+      border: 1px solid $color-white;
       border-radius: 50%;
       width: 40px;
       height: 40px;

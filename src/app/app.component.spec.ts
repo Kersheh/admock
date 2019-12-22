@@ -1,12 +1,14 @@
 import { async, TestBed, ComponentFixture } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { MockComponent } from 'ng-mocks';
 
 import { AppTranslateModule } from 'src/app/app-translate.module';
 import { SidebarComponent } from 'src/components/sidebar/sidebar.component';
-import { ViewComponent } from 'src/components/view/view.component';
 import { FooterComponent } from 'src/components/footer/footer.component';
+import localStorageServiceStub from 'src/test/stubs/local-storage.service.stub';
 
 import { AppComponent } from './app.component';
 
@@ -14,26 +16,32 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let translateService: TranslateService;
   let titleService: Title;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        AppTranslateModule
+        AppTranslateModule,
+        RouterTestingModule
       ],
       declarations: [
         AppComponent,
         MockComponent(SidebarComponent),
-        MockComponent(ViewComponent),
         MockComponent(FooterComponent)
+      ],
+      providers: [
+        localStorageServiceStub.provider
       ]
     }).compileComponents();
 
     translateService = TestBed.get(TranslateService);
     titleService = TestBed.get(Title);
+    router = TestBed.get(Router);
 
     spyOn(translateService, 'setTranslation');
     spyOn(translateService, 'setDefaultLang');
     spyOn(titleService, 'setTitle');
+    spyOn(router, 'navigate');
   }));
 
   it('should create the app', () => {

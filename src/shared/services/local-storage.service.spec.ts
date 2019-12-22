@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
+import loggerServiceStub from 'src/test/stubs/logger.service.stub';
+import userServiceStub from 'src/test/stubs/user.service.stub';
+
 import { LocalStorageService } from './local-storage.service';
 
 describe('LocalStorageService', () => {
@@ -8,7 +11,13 @@ describe('LocalStorageService', () => {
   beforeEach(() => {
     spyOn(LocalStorageService.prototype, 'loadUserLocalStorage');
 
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        loggerServiceStub.provider,
+        userServiceStub.provider
+      ]
+    });
+    userServiceStub.test.setTestUser();
     service = TestBed.get(LocalStorageService);
 
     service.store = {};

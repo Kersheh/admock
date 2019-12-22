@@ -30,6 +30,7 @@ import { ProfileComponent } from 'src/components/views/profile/profile.component
 // shared components
 import { SocialMediaIconComponent } from 'src/components/shared/social-media-icon/social-media-icon.component';
 import { LoginDialogComponent } from 'src/components/shared/login-dialog/login-dialog.component';
+import { AdRenderPanelComponent } from 'src/components/shared/ad-render-panel/ad-render-panel.component';
 
 @NgModule({
   imports: [
@@ -54,7 +55,8 @@ import { LoginDialogComponent } from 'src/components/shared/login-dialog/login-d
     PinterestComponent,
     SnapchatComponent,
     LinkedinComponent,
-    TiktokComponent
+    TiktokComponent,
+    AdRenderPanelComponent
   ],
   providers: [
     CookieService

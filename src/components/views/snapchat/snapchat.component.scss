@@ -1,5 +1,11 @@
 @import 'src/styles/abstract/mixins';
 
 .snapchat {
-  @include view-layout;
+  width: 100%;
+  height: 100%;
+
+  &-container {
+    @include view-layout;
+    overflow-y: scroll;
+  }
 }

@@ -1,0 +1,15 @@
+@import 'src/styles/abstract/mixins';
+@import 'src/styles/abstract/colors';
+
+.ad-render-panel {
+  background-color: $color-kilamanjaro-gray;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  border-left: 2px solid rgba($color-white, .2);
+
+  &-container {
+    @include view-layout;
+    overflow-y: scroll;
+  }
+}

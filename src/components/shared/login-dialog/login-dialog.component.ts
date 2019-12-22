@@ -11,7 +11,9 @@ export class LoginDialogComponent {
   public loginForm: FormGroup;
   public hidePassword = true;
 
-  constructor(public dialogRef: MatDialogRef<LoginDialogComponent>) {
+  constructor(
+    public dialogRef: MatDialogRef<LoginDialogComponent>
+  ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])

@@ -18,21 +18,29 @@ export class ProfileComponent implements OnDestroy {
     public userService: UserService
   ) {
     this.user$ = this.userService.user.subscribe((user: User) => {
-      this.profileForm = new FormGroup({
-        email: new FormControl({
-          value: user.email,
-          disabled: !this.isEdit
-        }, [Validators.required, Validators.email]),
-        firstName: new FormControl({
-          value: user.firstName,
-          disabled: !this.isEdit
-        }, [Validators.required]),
-        lastName: new FormControl({
-          value: user.lastName,
-          disabled: !this.isEdit
-        }, [Validators.required]),
-        // profileImage: new FormControl('', [Validators.required])
-      });
+      if(user) {
+        this.profileForm = new FormGroup({
+          email: new FormControl({
+            value: user.email,
+            disabled: !this.isEdit
+          }, [
+            Validators.required, Validators.email
+          ]),
+          firstName: new FormControl({
+            value: user.firstName,
+            disabled: !this.isEdit
+          }, [
+            Validators.required
+          ]),
+          lastName: new FormControl({
+            value: user.lastName,
+            disabled: !this.isEdit
+          }, [
+            Validators.required
+          ]),
+          // profileImage: new FormControl('', [Validators.required])
+        });
+      }
     });
   }
 

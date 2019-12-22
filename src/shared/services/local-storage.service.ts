@@ -19,8 +19,10 @@ export class LocalStorageService {
     private userService: UserService
   ) {
     this.userService.user.subscribe((user: User) => {
-      this.activeUser = user ? user.userID : 'default';
-      this.loadUserLocalStorage();
+      if(user) {
+        this.activeUser = user.userID;
+        this.loadUserLocalStorage();
+      }
     });
   }
 

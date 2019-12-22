@@ -1,4 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+import { AppMaterialModule } from 'src/app/app-material.module';
+import { AppTranslateModule } from 'src/app/app-translate.module';
+import userServiceStub from 'src/test/stubs/user.service.stub';
 
 import { ProfileComponent } from './profile.component';
 
@@ -8,7 +13,18 @@ describe('ProfileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfileComponent ]
+      imports: [
+        AppMaterialModule,
+        AppTranslateModule,
+        ReactiveFormsModule,
+        FormsModule
+      ],
+      declarations: [
+        ProfileComponent
+      ],
+      providers: [
+        userServiceStub.provider
+      ]
     })
     .compileComponents();
   }));
@@ -16,6 +32,7 @@ describe('ProfileComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
+    userServiceStub.test.setTestUser();
     fixture.detectChanges();
   });
 
