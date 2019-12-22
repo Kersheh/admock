@@ -23,6 +23,9 @@ export class LocalStorageService {
         this.activeUser = user.userID;
         this.loadUserLocalStorage();
       }
+
+      // TODO: Remove when user is properly utilized and implemented
+      this.loadUserLocalStorage();
     });
   }
 

@@ -8,6 +8,8 @@
     "start": "ng serve --host=127.0.0.1 --port=5000 --open=true",
     "build": "ng build",
     "build:prod": "ng build --prod",
+    "deploy": "./scripts/buildImage.sh latest && ./scripts/runContainer.sh",
+    "deploy:prod": "./scripts/buildImage.sh latest && ./scripts/pushImage.sh && ./scripts/deployProdContainer.sh",
     "test": "ng test",
     "lint": "sass-lint -c .sass-lint.yml 'src/**/*.scss' -v -q && ng lint"
   },
