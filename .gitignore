@@ -1,3 +1,6 @@
+# credentials
+/scripts/docker-azure-pass.txt
+
 # compiled output
 /dist
 /tmp
