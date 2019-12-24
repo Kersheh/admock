@@ -1,0 +1,32 @@
+@import 'src/styles/abstract/colors';
+
+mat-tab-group {
+  &.mat-tab-group {
+    .mat-tab-list {
+      transform: none !important; // sass-lint:disable-line no-important
+
+      .mat-ink-bar {
+        background-color: $color-danube-blue;
+      }
+    }
+
+    .mat-tab-label {
+      opacity: 1;
+      min-width: 32px;
+    }
+
+    .mat-tab-label-content {
+      .mat-icon {
+        color: $color-kilamanjaro-gray;
+
+        & + span {
+          margin-left: 8px;
+        }
+      }
+    }
+
+    .mat-tab-header-pagination {
+      display: none;
+    }
+  }
+}

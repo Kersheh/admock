@@ -28,6 +28,8 @@
   "MEDIA_TYPE_LINKEDIN": "LinkedIn",
   "MEDIA_TYPE_TIKTOK": "TikTok",
 
+  "AD_RENDER_PANEL_TITLE": "Preview",
+
   "LOGIN_DIALOG_TITLE": "Login",
   "LOGIN_FORM_EMAIL": "Email",
   "LOGIN_FORM_PASSWORD": "Password",

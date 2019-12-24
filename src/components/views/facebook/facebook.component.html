@@ -1,20 +1,52 @@
 <div class="facebook" fxLayout="row">
-  <div fxFlex="50" class="facebook-container">
-    <h1 translate>VIEW_TITLE_FACEBOOK</h1>
-    <mat-card class="mat-elevation-z2">
-      <div>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam interdum diam vel elit consectetur, sed fringilla libero lacinia. Maecenas consequat, magna sed convallis varius, est lorem dictum dui, sit amet commodo orci nibh non neque. Vivamus et feugiat lacus. In venenatis vehicula pulvinar. Donec laoreet ex ligula, a condimentum elit laoreet nec. Cras nec gravida lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam in mauris lorem. Mauris nec ligula mattis purus imperdiet vestibulum.
+  <mat-tab-group fxFlex="50" animationDuration="400ms" mat-stretch-tabs>
+    <mat-tab>
+      <ng-template matTabLabel>
+        <mat-icon>photo_camera</mat-icon>
+        <span class="facebook-tab__title" ngClass.xs="hide" ngClass.sm="hide">Image</span>
+      </ng-template>
+      <div class="facebook-container">
+        <h1 translate>VIEW_TITLE_FACEBOOK</h1>
+        <h4>Image</h4>
+        <mat-card class="mat-elevation-z2">
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam interdum diam vel elit consectetur, sed fringilla libero lacinia. Maecenas consequat, magna sed convallis varius, est lorem dictum dui, sit amet commodo orci nibh non neque. Vivamus et feugiat lacus. In venenatis vehicula pulvinar. Donec laoreet ex ligula, a condimentum elit laoreet nec. Cras nec gravida lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam in mauris lorem. Mauris nec ligula mattis purus imperdiet vestibulum.
+          </div>
+        </mat-card>
       </div>
+    </mat-tab>
 
-      <div>
-        Phasellus arcu lorem, aliquam quis est et, rutrum accumsan ante. Nam nibh elit, aliquet ac faucibus id, placerat sed sem. Nam sagittis massa quis porta luctus. Phasellus euismod purus urna, vel tempor felis bibendum quis. Nulla sed mauris sit amet libero condimentum dapibus. Proin dignissim erat aliquet aliquam sagittis. Integer eu quam eros. Vivamus eget ligula et diam euismod hendrerit sit amet sit amet arcu. Donec pretium viverra purus eget dapibus. Mauris ut diam sagittis, molestie
+    <mat-tab>
+      <ng-template matTabLabel>
+        <mat-icon>videocam</mat-icon>
+        <span class="facebook-tab__title" ngClass.xs="hide" ngClass.sm="hide">Video</span></ng-template>
+      <div class="facebook-container">
+        <h1 translate>VIEW_TITLE_FACEBOOK</h1>
+        <h4>Video</h4>
+        <mat-card class="mat-elevation-z2">
+          <div>
+            Phasellus arcu lorem, aliquam quis est et, rutrum accumsan ante. Nam nibh elit, aliquet ac faucibus id, placerat sed sem. Nam sagittis massa quis porta luctus. Phasellus euismod purus urna, vel tempor felis bibendum quis. Nulla sed mauris sit amet libero condimentum dapibus. Proin dignissim erat aliquet aliquam sagittis. Integer eu quam eros. Vivamus eget ligula et diam euismod hendrerit sit amet sit amet arcu. Donec pretium viverra purus eget dapibus. Mauris ut diam sagittis, molestie
+          </div>
+        </mat-card>
       </div>
+    </mat-tab>
 
-      <div>
-        Quisque volutpat, nisi congue blandit cursus, orci enim dignissim mi, at tempor nisi massa condimentum magna. Nulla vel mollis tellus. Duis euismod, lectus ut pulvinar tristique, enim metus feugiat mi, ut bibendum nunc erat quis mauris. In consectetur molestie purus eu tincidunt. Proin vel odio quam. Ut ullamcorper lorem justo, vel fermentum nisl maximus et. Quisque vehicula risus sed dapibus varius. Donec et magna dolor. Proin eros ex, pharetra eget vehicula non, tincidunt vel est.
+    <mat-tab>
+      <ng-template matTabLabel>
+        <mat-icon>view_carousel</mat-icon>
+        <span class="facebook-tab__title" ngClass.xs="hide" ngClass.sm="hide">Carousel</span>
+      </ng-template>
+      <div class="facebook-container">
+        <h1 translate>VIEW_TITLE_FACEBOOK</h1>
+        <h4>Carousel</h4>
+        <mat-card class="mat-elevation-z2">
+          <div>
+            Quisque volutpat, nisi congue blandit cursus, orci enim dignissim mi, at tempor nisi massa condimentum magna. Nulla vel mollis tellus. Duis euismod, lectus ut pulvinar tristique, enim metus feugiat mi, ut bibendum nunc erat quis mauris. In consectetur molestie purus eu tincidunt. Proin vel odio quam. Ut ullamcorper lorem justo, vel fermentum nisl maximus et. Quisque vehicula risus sed dapibus varius. Donec et magna dolor. Proin eros ex, pharetra eget vehicula non, tincidunt vel est.
+          </div>
+        </mat-card>
       </div>
-    </mat-card>
-  </div>
+    </mat-tab>
+  </mat-tab-group>
 
   <app-ad-render-panel fxFlex="50"></app-ad-render-panel>
 </div>

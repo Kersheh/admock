@@ -8,4 +8,12 @@
     @include view-layout;
     overflow-y: scroll;
   }
+
+  &-tab {
+    &__title {
+      &.hide {
+        display: none;
+      }
+    }
+  }
 }

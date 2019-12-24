@@ -13,7 +13,8 @@ import {
   MatRippleModule,
   MatMenuModule,
   MatDividerModule,
-  MatCardModule
+  MatCardModule,
+  MatTabsModule
 } from '@angular/material';
 
 @NgModule({
@@ -31,7 +32,8 @@ import {
     MatRippleModule,
     MatMenuModule,
     MatDividerModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -47,7 +49,8 @@ import {
     MatRippleModule,
     MatMenuModule,
     MatDividerModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule
   ]
 })
 export class AppMaterialModule {}
