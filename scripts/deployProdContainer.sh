@@ -4,7 +4,7 @@ AZURE_NAME=admock
 DOCKER_USER=admockregistry
 DOCKER_PASS=$(cat $(dirname "$0")/docker-azure-pass.txt)
 DOCKER_REG=admockregistry.azurecr.io
-DOCKER_REG_REPO=$DOCKER_REG/admock/client
+DOCKER_REG_REPO=$DOCKER_REG/admock/client:latest
 
 HTTP_PORT=80
 HTTPS_PORT=443
