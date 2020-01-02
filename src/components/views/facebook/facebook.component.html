@@ -1,16 +1,55 @@
 <div class="facebook" fxLayout="row">
-  <mat-tab-group fxFlex="50" animationDuration="400ms" mat-stretch-tabs>
+  <mat-tab-group class="facebook-tab-group" fxFlex="50" animationDuration="400ms" mat-stretch-tabs>
     <mat-tab>
       <ng-template matTabLabel>
         <mat-icon>photo_camera</mat-icon>
-        <span class="facebook-tab__title" ngClass.xs="hide" ngClass.sm="hide">Image</span>
+        <span fxShow="false" fxShow.gt-sm>Image</span>
       </ng-template>
       <div class="facebook-container">
         <h1 translate>VIEW_TITLE_FACEBOOK</h1>
         <h4>Image</h4>
         <mat-card class="mat-elevation-z2">
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam interdum diam vel elit consectetur, sed fringilla libero lacinia. Maecenas consequat, magna sed convallis varius, est lorem dictum dui, sit amet commodo orci nibh non neque. Vivamus et feugiat lacus. In venenatis vehicula pulvinar. Donec laoreet ex ligula, a condimentum elit laoreet nec. Cras nec gravida lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam in mauris lorem. Mauris nec ligula mattis purus imperdiet vestibulum.
+          <div class="facebook-content__page-info" fxLayout="column" fxLayoutAlign="start start">
+            <h4>Post Info</h4>
+
+            <div class="facebook__text">Provide a Page Name and Page Logo to display as the page posting the ad.</div>
+            <mat-form-field>
+              <input matInput #pageNameInput [attr.maxlength]="PAGE_NAME_MAX_LEN" placeholder="Page Name" autocomplete="off">
+              <mat-hint align="end">{{pageNameInput.value?.length || 0}}/{{PAGE_NAME_MAX_LEN}}</mat-hint>
+            </mat-form-field>
+
+            <div class="facebook__text">Insert the message of the Facebook post.</div>
+            <mat-form-field class="facebook-content__textarea">
+              <textarea matInput matTextareaAutosize placeholder="Post Message"></textarea>
+            </mat-form-field>
+
+            <div class="facebook__text">Optional: Select a Call to Action button text.</div>
+            <mat-form-field>
+              <mat-select placeholder="Button Text">
+                <mat-option>{{'FACEBOOK_CTA_BTN_NONE' | translate}}</mat-option>
+                <mat-option *ngFor="let callToAction of callToActionOpts" [value]="callToAction.value">
+                  {{callToAction.translate | translate}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <h4>Link Info</h4>
+
+            <div class="facebook__text">Provide a header, description, and caption for the post's link.</div>
+            <mat-form-field>
+              <input matInput #linkHeaderInput [attr.maxlength]="LINK_HEADER_MAX_LEN" placeholder="Link Header" autocomplete="off">
+              <mat-hint align="end">{{linkHeaderInput.value?.length || 0}}/{{LINK_HEADER_MAX_LEN}}</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput #linkDescInput [attr.maxlength]="LINK_DESC_MAX_LEN" placeholder="Link Description" autocomplete="off">
+              <mat-hint align="end">{{linkDescInput.value?.length || 0}}/{{LINK_HEADER_MAX_LEN}}</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput #linkCaptionInput [attr.maxlength]="LINK_CAPTION_MAX_LEN" placeholder="Link Caption" autocomplete="off">
+              <mat-hint align="end">{{linkCaptionInput.value?.length || 0}}/{{LINK_HEADER_MAX_LEN}}</mat-hint>
+            </mat-form-field>
           </div>
         </mat-card>
       </div>
@@ -19,7 +58,8 @@
     <mat-tab>
       <ng-template matTabLabel>
         <mat-icon>videocam</mat-icon>
-        <span class="facebook-tab__title" ngClass.xs="hide" ngClass.sm="hide">Video</span></ng-template>
+        <span fxShow="false" fxShow.gt-sm>Video</span>
+      </ng-template>
       <div class="facebook-container">
         <h1 translate>VIEW_TITLE_FACEBOOK</h1>
         <h4>Video</h4>
@@ -34,7 +74,7 @@
     <mat-tab>
       <ng-template matTabLabel>
         <mat-icon>view_carousel</mat-icon>
-        <span class="facebook-tab__title" ngClass.xs="hide" ngClass.sm="hide">Carousel</span>
+        <span fxShow="false" fxShow.gt-sm>Carousel</span>
       </ng-template>
       <div class="facebook-container">
         <h1 translate>VIEW_TITLE_FACEBOOK</h1>
@@ -48,5 +88,5 @@
     </mat-tab>
   </mat-tab-group>
 
-  <app-ad-render-panel fxFlex="50"></app-ad-render-panel>
+  <app-ad-render-panel class="facebook-ad-render-panel" fxFlex="50"></app-ad-render-panel>
 </div>

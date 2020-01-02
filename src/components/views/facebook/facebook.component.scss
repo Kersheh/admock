@@ -9,11 +9,21 @@
     overflow-y: scroll;
   }
 
-  &-tab {
-    &__title {
-      &.hide {
-        display: none;
-      }
+  &__text {
+    margin: 12px 0 6px;
+  }
+
+  &-tab-group {
+    min-width: 300px;
+  }
+
+  &-ad-render-panel {
+    min-width: 300px;
+  }
+
+  &-content {
+    &__textarea {
+      width: 100%;
     }
   }
 }
