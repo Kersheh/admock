@@ -18,7 +18,7 @@ describe('LocalStorageService', () => {
       ]
     });
     userServiceStub.test.setTestUser();
-    service = TestBed.get(LocalStorageService);
+    service = TestBed.inject(LocalStorageService);
 
     service.store = {};
   });

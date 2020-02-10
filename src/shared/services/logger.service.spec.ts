@@ -7,7 +7,7 @@ describe('LoggerService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.get(LoggerService);
+    service = TestBed.inject(LoggerService);
 
     spyOn(console, 'info');
     spyOn(console, 'log');
@@ -23,9 +23,10 @@ describe('LoggerService', () => {
     service.PROD = false;
     const logMsg = 'Test msg';
 
-    Object.values(LogLevel).forEach(level => {
-      service.log(level, logMsg);
-    });
+    service.log(LogLevel.INFO, logMsg);
+    service.log(LogLevel.LOG, logMsg);
+    service.log(LogLevel.WARN, logMsg);
+    service.log(LogLevel.ERROR, logMsg);
 
     expect(console.info).toHaveBeenCalledWith(logMsg);
     expect(console.log).toHaveBeenCalledWith(logMsg);
@@ -37,9 +38,10 @@ describe('LoggerService', () => {
     service.PROD = true;
     const logMsg = 'Test msg';
 
-    Object.values(LogLevel).forEach(level => {
-      service.log(level, logMsg);
-    });
+    service.log(LogLevel.INFO, logMsg);
+    service.log(LogLevel.LOG, logMsg);
+    service.log(LogLevel.WARN, logMsg);
+    service.log(LogLevel.ERROR, logMsg);
 
     expect(console.info).not.toHaveBeenCalledWith(logMsg);
     expect(console.log).not.toHaveBeenCalledWith(logMsg);

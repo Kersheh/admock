@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 
 import { AppMaterialModule } from 'src/app/app-material.module';
 import { AppTranslateModule } from 'src/app/app-translate.module';

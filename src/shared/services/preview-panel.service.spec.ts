@@ -6,7 +6,7 @@ describe('PreviewPanelService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: PreviewPanelService = TestBed.get(PreviewPanelService);
+    const service: PreviewPanelService = TestBed.inject(PreviewPanelService);
     expect(service).toBeTruthy();
   });
 });

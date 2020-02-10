@@ -34,9 +34,9 @@ describe('AppComponent', () => {
       ]
     }).compileComponents();
 
-    translateService = TestBed.get(TranslateService);
-    titleService = TestBed.get(Title);
-    router = TestBed.get(Router);
+    translateService = TestBed.inject(TranslateService);
+    titleService = TestBed.inject(Title);
+    router = TestBed.inject(Router);
 
     spyOn(translateService, 'setTranslation');
     spyOn(translateService, 'setDefaultLang');

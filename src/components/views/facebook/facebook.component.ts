@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatTabChangeEvent, MatButtonToggleChange } from '@angular/material';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { TranslateService } from '@ngx-translate/core';
 
 import CONSTANTS from 'src/shared/constants';

@@ -22,7 +22,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/assets"
             ],
@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "admock"
+    }
+  },
+  "defaultProject": "admock",
+  "cli": {
+    "analytics": false
+  }
 }
