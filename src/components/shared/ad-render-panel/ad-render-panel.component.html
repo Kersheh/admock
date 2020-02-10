@@ -1,5 +1,92 @@
 <div class="ad-render-panel">
   <div class="ad-render-panel-container">
-    <h1 class="alt" translate>AD_RENDER_PANEL_TITLE</h1>
+    <h1 class="alt ad-render-panel__header" translate>AD_RENDER_PANEL_TITLE</h1>
+
+    <div fxLayoutAlign="center" class="facebook" *ngIf="viewName === MEDIA_TYPES.FACEBOOK">
+      <div class="facebook__card mat-elevation-z2">
+        <div class="facebook-header" fxLayout="row">
+          <div class="facebook-header__logo"></div>
+
+          <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
+            <div fxLayout="column">
+              <div class="facebook-header__page-name">{{ previewProps.facebook?.pageName || defaults.image.pageName }}</div>
+              <div fxFlex="row" fxLayoutAlign="start center" class="facebook-header__sponsored">
+                <span class="facebook-header__sponsored-link" translate>FACEBOOK_PREVIEW_SPONSORED</span>
+                <span>&nbsp;·&nbsp;</span>
+                <span class="facebook-header__earth-icon"></span>
+              </div>
+            </div>
+
+            <div fxLayout="row" class="facebook-header__ellipsis">…</div>
+          </div>
+        </div>
+
+        <!-- TODO: Handle new lines correctly with 6px margin-bottom -->
+        <div class="facebook-message">
+          {{ previewProps.facebook?.postMessage || defaults.image.postMessage }}
+        </div>
+
+        <div class="facebook-image"></div>
+
+        <a [href]="previewProps.facebook?.linkUrl ? '//' + previewProps.facebook?.linkUrl : ''"
+           target="_blank" rel="noreferrer" class="facebook-link" fxLayout="row" fxLayoutAlign="space-between center">
+          <div fxLayout="column">
+            <div class="facebook-link__url">{{ previewProps.facebook?.linkUrl || defaults.image.linkUrl }}</div>
+            <div class="facebook-link__desc">{{ previewProps.facebook?.linkDesc || defaults.image.linkDesc }}</div>
+            <div class="facebook-link__caption">{{ previewProps.facebook?.linkCaption || defaults.image.linkCaption }}</div>
+          </div>
+
+          <div *ngIf="previewProps.facebook?.ctaButton" class="facebook-link__btn">
+            {{ FACEBOOK_CALL_TO_ACTION_BTN_TRANSLATIONS[previewProps.facebook?.ctaButton] | translate }}
+          </div>
+        </a>
+
+        <div *ngIf="(previewProps.facebook.socialReactions.length > 0 && previewProps.facebook?.socialLikes > 0) || previewProps.facebook?.socialComments > 0 || previewProps.facebook?.socialShares > 0"
+             class="facebook-social" fxLayout="row" fxLayoutAlign="space-between">
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <span *ngIf="previewProps.facebook?.socialLikes > 0" fxLayout="row" fxLayoutAlign="start center">
+              <span *ngIf="previewProps.facebook?.socialReactions.includes('like')" class="facebook-social-icon like"></span>
+              <span *ngIf="previewProps.facebook?.socialReactions.includes('wow')" class="facebook-social-icon wow"></span>
+              <span *ngIf="previewProps.facebook?.socialReactions.includes('angry')" class="facebook-social-icon angry"></span>
+              <span *ngIf="previewProps.facebook?.socialReactions.includes('laugh')" class="facebook-social-icon laugh"></span>
+              <span *ngIf="previewProps.facebook?.socialReactions.includes('sad')" class="facebook-social-icon sad"></span>
+              <span *ngIf="previewProps.facebook?.socialReactions.includes('love')" class="facebook-social-icon love"></span>
+            </span>
+            <span *ngIf="previewProps.facebook.socialReactions.length > 0 && previewProps.facebook?.socialLikes > 0" class="facebook-social__likes">{{ previewProps.facebook?.socialLikes | bigInteger }}</span>
+          </div>
+
+          <div fxLayout="row">
+            <span *ngIf="previewProps.facebook?.socialComments > 0" class="facebook-social__comments">
+              {{ previewProps.facebook?.socialComments | bigInteger }} {{ (previewProps.facebook?.socialComments > 1 ? 'FACEBOOK_PREVIEW_COMMENTS' : 'FACEBOOK_PREVIEW_COMMENT') | translate }}
+            </span>
+            <span *ngIf="previewProps.facebook?.socialShares > 0" class="facebook-social__shares">
+              {{ previewProps.facebook?.socialShares | bigInteger }} {{ (previewProps.facebook?.socialShares > 1 ? 'FACEBOOK_PREVIEW_SHARES' :  'FACEBOOK_PREVIEW_SHARE') | translate }}
+            </span>
+          </div>
+        </div>
+
+        <div class="facebook-social-buttons">
+          <div fxLayout="row" fxFlex="grow">
+            <span fxLayoutAlign="center center" fxFlex="grow" class="facebook-social-buttons__btn">
+              <span class="like"></span>
+              <span translate>FACEBOOK_PREVIEW_LIKE_BTN</span>
+            </span>
+            <span fxLayoutAlign="center center" fxFlex="grow" class="facebook-social-buttons__btn">
+              <span class="comment"></span>
+              <span translate>FACEBOOK_PREVIEW_COMMENT_BTN</span>
+            </span>
+            <span fxLayoutAlign="center center" fxFlex="grow" class="facebook-social-buttons__btn">
+              <span class="share"></span>
+              <span translate>FACEBOOK_PREVIEW_SHARE_BTN</span>
+            </span>
+          </div>
+
+          <span fxLayoutAlign="center center" class="facebook-social-buttons__btn account">
+            <mat-icon class="facebook-social-buttons__img">account_circle</mat-icon>
+            <mat-icon class="facebook-social-buttons__arrow">arrow_drop_down</mat-icon>
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,4 +1,5 @@
 @import 'src/styles/abstract/mixins';
+@import 'src/styles/vendor/facebook';
 
 .facebook {
   width: 100%;
@@ -18,12 +19,52 @@
   }
 
   &-ad-render-panel {
-    min-width: 300px;
+    min-width: 548px;
   }
 
   &-content {
     &__textarea {
       width: 100%;
+    }
+  }
+
+  &__btn-group {
+    margin-left: 56px;
+
+    &:not(:first-child) {
+      margin: 4px 0 4px 56px;
+    }
+  }
+
+  &__icon {
+    &.like {
+      @include facebook-reaction-like;
+    }
+
+    &.wow {
+      @include facebook-reaction-wow;
+    }
+
+    &.angry {
+      @include facebook-reaction-angry;
+    }
+
+    &.laugh {
+      @include facebook-reaction-laugh;
+    }
+
+    &.sad {
+      @include facebook-reaction-sad;
+    }
+
+    &.love {
+      @include facebook-reaction-love;
+    }
+  }
+
+  .mat-form-field {
+    &:not(:first-of-type) {
+      margin-left: 56px;
     }
   }
 }

@@ -1,56 +1,130 @@
 <div class="facebook" fxLayout="row">
-  <mat-tab-group class="facebook-tab-group" fxFlex="50" animationDuration="400ms" mat-stretch-tabs>
+  <mat-tab-group class="facebook-tab-group" fxFlex="50" animationDuration="400ms" mat-stretch-tabs (selectedTabChange)="tabChange($event)">
     <mat-tab>
       <ng-template matTabLabel>
         <mat-icon>photo_camera</mat-icon>
-        <span fxShow="false" fxShow.gt-sm>Image</span>
+        <span fxShow="false" fxShow.gt-sm translate>VIEW_TAB_GROUP_IMAGE</span>
       </ng-template>
+
       <div class="facebook-container">
         <h1 translate>VIEW_TITLE_FACEBOOK</h1>
-        <h4>Image</h4>
+        <h4 translate>VIEW_TAB_GROUP_IMAGE</h4>
         <mat-card class="mat-elevation-z2">
-          <div class="facebook-content__page-info" fxLayout="column" fxLayoutAlign="start start">
-            <h4>Post Info</h4>
+          <form [formGroup]="facebookImageFormGroup">
+            <div class="facebook-content__page-info" fxLayout="column" fxLayoutAlign="start start">
+              <h4 translate>FACEBOOK_POST_INFO_HEADER</h4>
 
-            <div class="facebook__text">Provide a Page Name and Page Logo to display as the page posting the ad.</div>
-            <mat-form-field>
-              <input matInput #pageNameInput [attr.maxlength]="PAGE_NAME_MAX_LEN" placeholder="Page Name" autocomplete="off">
-              <mat-hint align="end">{{pageNameInput.value?.length || 0}}/{{PAGE_NAME_MAX_LEN}}</mat-hint>
-            </mat-form-field>
+              <div fxLayout="column" class="full-width">
+                <div class="facebook__text" translate>FACEBOOK_PAGE_INFO_TEXT</div>
+                <mat-form-field class="full-width">
+                  <input matInput #pageNameInput formControlName="pageName"
+                         [placeholder]="'FACEBOOK_FIELD_PAGE_NAME_TEXT' | translate" autocomplete="off">
+                  <mat-hint align="end">{{pageNameInput.value?.length || 0}}/{{PAGE_NAME_MAX_LEN}}</mat-hint>
+                  <mat-error *ngIf="facebookImageFormGroup.get('pageName').invalid">Recommeneded Character Limit: {{PAGE_NAME_MAX_LEN}}</mat-error>
+                </mat-form-field>
+              </div>
 
-            <div class="facebook__text">Insert the message of the Facebook post.</div>
-            <mat-form-field class="facebook-content__textarea">
-              <textarea matInput matTextareaAutosize placeholder="Post Message"></textarea>
-            </mat-form-field>
+              <div fxLayout="column" class="full-width">
+                <div class="facebook__text" translate>FACEBOOK_MESSAGE_INFO_TEXT</div>
+                <mat-form-field class="facebook-content__textarea">
+                  <textarea matInput matTextareaAutosize formControlName="postMessage"
+                            [placeholder]="'FACEBOOK_FIELD_POST_MSG_TEXT' | translate">
+                  </textarea>
+                </mat-form-field>
+              </div>
 
-            <div class="facebook__text">Optional: Select a Call to Action button text.</div>
-            <mat-form-field>
-              <mat-select placeholder="Button Text">
-                <mat-option>{{'FACEBOOK_CTA_BTN_NONE' | translate}}</mat-option>
-                <mat-option *ngFor="let callToAction of callToActionOpts" [value]="callToAction.value">
-                  {{callToAction.translate | translate}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+              <h4 translate>FACEBOOK_LINK_INFO_HEADER</h4>
 
-            <h4>Link Info</h4>
+              <div class="facebook__text" translate>FACEBOOK_LINK_INFO_TEXT</div>
+              <div fxLayout="row" class="full-width">
+                <mat-form-field class="full-width">
+                  <input matInput #linkUrlInput formControlName="linkUrl" [attr.maxlength]="LINK_URL_MAX_LEN"
+                         [placeholder]="'FACEBOOK_FIELD_LINK_URL_TEXT' | translate" autocomplete="off">
+                  <mat-hint align="end">{{linkUrlInput.value?.length || 0}}/{{LINK_URL_MAX_LEN}}</mat-hint>
+                </mat-form-field>
+              </div>
 
-            <div class="facebook__text">Provide a header, description, and caption for the post's link.</div>
-            <mat-form-field>
-              <input matInput #linkHeaderInput [attr.maxlength]="LINK_HEADER_MAX_LEN" placeholder="Link Header" autocomplete="off">
-              <mat-hint align="end">{{linkHeaderInput.value?.length || 0}}/{{LINK_HEADER_MAX_LEN}}</mat-hint>
-            </mat-form-field>
+              <div fxLayout="row" class="full-width">
+                <mat-form-field class="full-width">
+                  <input matInput #linkDescInput formControlName="linkDesc" [attr.maxlength]="LINK_DESC_MAX_LEN"
+                         [placeholder]="'FACEBOOK_FIELD_LINK_DESC_TEXT' | translate" autocomplete="off">
+                  <mat-hint align="end">{{linkDescInput.value?.length || 0}}/{{LINK_DESC_MAX_LEN}}</mat-hint>
+                </mat-form-field>
+              </div>
 
-            <mat-form-field>
-              <input matInput #linkDescInput [attr.maxlength]="LINK_DESC_MAX_LEN" placeholder="Link Description" autocomplete="off">
-              <mat-hint align="end">{{linkDescInput.value?.length || 0}}/{{LINK_HEADER_MAX_LEN}}</mat-hint>
-            </mat-form-field>
+              <div fxLayout="row" class="full-width">
+                <mat-form-field class="full-width">
+                  <input matInput #linkCaptionInput formControlName="linkCaption" [attr.maxlength]="LINK_CAPTION_MAX_LEN"
+                         [placeholder]="'FACEBOOK_FIELD_LINK_CAPTION_TEXT' | translate" autocomplete="off">
+                  <mat-hint align="end">{{linkCaptionInput.value?.length || 0}}/{{LINK_CAPTION_MAX_LEN}}</mat-hint>
+                </mat-form-field>
+              </div>
 
-            <mat-form-field>
-              <input matInput #linkCaptionInput [attr.maxlength]="LINK_CAPTION_MAX_LEN" placeholder="Link Caption" autocomplete="off">
-              <mat-hint align="end">{{linkCaptionInput.value?.length || 0}}/{{LINK_HEADER_MAX_LEN}}</mat-hint>
-            </mat-form-field>
-          </div>
+              <div fxLayout="column">
+                <div class="facebook__text" translate>FACEBOOK_CALL_TO_ACTION_INFO_TEXT</div>
+                <mat-form-field>
+                  <mat-select [placeholder]="'FACEBOOK_FIELD_CTA_TEXT' | translate" formControlName="ctaButton">
+                    <mat-option>{{'FACEBOOK_CTA_BTN_NONE' | translate}}</mat-option>
+                    <mat-option *ngFor="let callToAction of CALL_TO_ACTION_OPTS" [value]="callToAction.value">
+                      {{callToAction.translate | translate}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <h4 translate>FACEBOOK_SOCIAL_HEADER</h4>
+
+              <div class="facebook__text" translate>FACEBOOK_SOCIAL_TEXT</div>
+              <div class="full-width" fxLayout="row" fxLayoutAlign="start center">
+                <mat-form-field>
+                  <input matInput formControlName="socialLikes" maxlength="9"
+                         [placeholder]="'FACEBOOK_SOCIAL_LIKES_TEXT' | translate" autocomplete="off">
+                </mat-form-field>
+
+                <div fxLayout="column">
+                  <mat-button-toggle-group class="facebook__btn-group" multiple>
+                    <mat-button-toggle value="like" (change)="updateSelectedReactions($event)">
+                      <div class="facebook__icon like"></div>
+                    </mat-button-toggle>
+
+                    <mat-button-toggle value="wow" (change)="updateSelectedReactions($event)">
+                      <div class="facebook__icon wow"></div>
+                    </mat-button-toggle>
+
+                    <mat-button-toggle value="angry" (change)="updateSelectedReactions($event)">
+                      <div class="facebook__icon angry"></div>
+                    </mat-button-toggle>
+                  </mat-button-toggle-group>
+
+                  <mat-button-toggle-group class="facebook__btn-group" multiple>
+                    <mat-button-toggle value="laugh" (change)="updateSelectedReactions($event)">
+                      <div class="facebook__icon laugh"></div>
+                    </mat-button-toggle>
+
+                    <mat-button-toggle value="sad" (change)="updateSelectedReactions($event)">
+                      <div class="facebook__icon sad"></div>
+                    </mat-button-toggle>
+
+                    <mat-button-toggle value="love" (change)="updateSelectedReactions($event)">
+                      <div class="facebook__icon love"></div>
+                    </mat-button-toggle>
+                  </mat-button-toggle-group>
+                </div>
+              </div>
+
+              <div class="full-width" fxLayout="row">
+                <mat-form-field>
+                  <input matInput formControlName="socialComments" maxlength="9"
+                         [placeholder]="'FACEBOOK_SOCIAL_COMMENTS_TEXT' | translate" autocomplete="off">
+                </mat-form-field>
+
+                <mat-form-field>
+                  <input matInput formControlName="socialShares" maxlength="9"
+                         [placeholder]="'FACEBOOK_SOCIAL_SHARES_TEXT' | translate" autocomplete="off">
+                </mat-form-field>
+              </div>
+            </div>
+          </form>
         </mat-card>
       </div>
     </mat-tab>
@@ -58,11 +132,11 @@
     <mat-tab>
       <ng-template matTabLabel>
         <mat-icon>videocam</mat-icon>
-        <span fxShow="false" fxShow.gt-sm>Video</span>
+        <span fxShow="false" fxShow.gt-sm translate>VIEW_TAB_GROUP_VIDEO</span>
       </ng-template>
       <div class="facebook-container">
         <h1 translate>VIEW_TITLE_FACEBOOK</h1>
-        <h4>Video</h4>
+        <h4 translate>VIEW_TAB_GROUP_VIDEO</h4>
         <mat-card class="mat-elevation-z2">
           <div>
             Phasellus arcu lorem, aliquam quis est et, rutrum accumsan ante. Nam nibh elit, aliquet ac faucibus id, placerat sed sem. Nam sagittis massa quis porta luctus. Phasellus euismod purus urna, vel tempor felis bibendum quis. Nulla sed mauris sit amet libero condimentum dapibus. Proin dignissim erat aliquet aliquam sagittis. Integer eu quam eros. Vivamus eget ligula et diam euismod hendrerit sit amet sit amet arcu. Donec pretium viverra purus eget dapibus. Mauris ut diam sagittis, molestie
@@ -74,11 +148,11 @@
     <mat-tab>
       <ng-template matTabLabel>
         <mat-icon>view_carousel</mat-icon>
-        <span fxShow="false" fxShow.gt-sm>Carousel</span>
+        <span fxShow="false" fxShow.gt-sm translate>VIEW_TAB_GROUP_CAROUSEL</span>
       </ng-template>
       <div class="facebook-container">
         <h1 translate>VIEW_TITLE_FACEBOOK</h1>
-        <h4>Carousel</h4>
+        <h4 translate>VIEW_TAB_GROUP_CAROUSEL</h4>
         <mat-card class="mat-elevation-z2">
           <div>
             Quisque volutpat, nisi congue blandit cursus, orci enim dignissim mi, at tempor nisi massa condimentum magna. Nulla vel mollis tellus. Duis euismod, lectus ut pulvinar tristique, enim metus feugiat mi, ut bibendum nunc erat quis mauris. In consectetur molestie purus eu tincidunt. Proin vel odio quam. Ut ullamcorper lorem justo, vel fermentum nisl maximus et. Quisque vehicula risus sed dapibus varius. Donec et magna dolor. Proin eros ex, pharetra eget vehicula non, tincidunt vel est.

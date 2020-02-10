@@ -14,7 +14,8 @@ import {
   MatDividerModule,
   MatCardModule,
   MatTabsModule,
-  MatSelectModule
+  MatSelectModule,
+  MatButtonToggleModule
 } from '@angular/material';
 
 @NgModule({
@@ -34,7 +35,8 @@ import {
     MatDividerModule,
     MatCardModule,
     MatTabsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonToggleModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -52,7 +54,8 @@ import {
     MatDividerModule,
     MatCardModule,
     MatTabsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonToggleModule
   ]
 })
 export class AppMaterialModule {}

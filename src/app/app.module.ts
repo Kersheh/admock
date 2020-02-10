@@ -11,6 +11,9 @@ import { AppTranslateModule } from './app-translate.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+// pipes
+import { BigIntegerPipe } from 'src/shared/pipes/big-integer.pipe';
+
 // components
 import { SidebarComponent } from 'src/components/sidebar/sidebar.component';
 import { FooterComponent } from 'src/components/footer/footer.component';
@@ -41,6 +44,7 @@ import { AdRenderPanelComponent } from 'src/components/shared/ad-render-panel/ad
     FontAwesomeModule
   ],
   declarations: [
+    BigIntegerPipe,
     AppComponent,
     SidebarComponent,
     SocialMediaIconComponent,
