@@ -8,10 +8,37 @@
   &-container {
     @include view-layout;
     overflow-y: scroll;
+
+    &__header {
+      font-size: 32px;
+      font-weight: 300;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+
+      span {
+        &:last-of-type {
+          margin-left: 12px;
+        }
+      }
+
+      &-bold {
+        font-weight: 400;
+        font-size: 32px;
+        letter-spacing: -1px;
+      }
+    }
   }
 
   &__text {
     margin: 12px 0 6px;
+  }
+
+  &__textarea {
+    width: 100%;
+  }
+
+  &__upload {
+    margin-top: 12px;
   }
 
   &-tab-group {
@@ -22,17 +49,9 @@
     min-width: 548px;
   }
 
-  &-content {
-    &__textarea {
-      width: 100%;
-    }
-  }
-
   &__btn-group {
-    margin-left: 56px;
-
     &:not(:first-child) {
-      margin: 4px 0 4px 56px;
+      margin: 4px 0;
     }
   }
 
@@ -59,12 +78,6 @@
 
     &.love {
       @include facebook-reaction-love;
-    }
-  }
-
-  .mat-form-field {
-    &:not(:first-of-type) {
-      margin-left: 56px;
     }
   }
 }

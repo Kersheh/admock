@@ -1,0 +1,43 @@
+@import 'src/styles/abstract/colors';
+@import 'src/styles/abstract/mixins';
+
+.upload-file {
+  position: relative;
+
+  &__header {
+    font-size: 11px;
+    font-weight: 600;
+    color: $color-nevada;
+    margin: auto 0;
+    position: absolute;
+    top: -20px;
+  }
+
+  &__btn {
+    padding: 4px 24px;
+  }
+
+  &__btn-icon {
+    @include cubic-transition(opacity, .4s);
+    opacity: 1;
+
+    &-wrapper {
+      position: relative;
+    }
+
+    &.done {
+      position: absolute;
+      color: $color-apple;
+    }
+
+    &.error {
+      position: absolute;
+      color: $color-cinnabar;
+    }
+
+    &.hide {
+      @include cubic-transition(opacity, .4s);
+      opacity: 0;
+    }
+  }
+}

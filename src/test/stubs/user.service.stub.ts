@@ -5,8 +5,8 @@ import { UserService, User } from 'src/shared/services/user.service';
 const user = new BehaviorSubject<User | null>(null);
 
 const METHOD_RETURNS = {
-  loadUser: undefined,
-  clearUser: undefined
+  loadUser: () => {},
+  clearUser: () => {}
 };
 
 export default {

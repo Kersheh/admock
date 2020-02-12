@@ -1,0 +1,28 @@
+@import 'src/styles/abstract/colors';
+
+.upload-file {
+  ngx-file-drop .ngx-file-drop {
+    &__drop-zone {
+      cursor: default !important; // sass-lint:disable-line no-important
+      padding: 12px 24px;
+      height: unset;
+      margin: unset;
+      border: 1px dotted $color-danube-blue;
+      border-radius: 12px;
+
+      &--over {
+        background-color: rgba($color-danube-blue, .2);
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgba($color-zircon, .1);
+      }
+    }
+
+    &__content {
+      height: unset;
+      color: $color-danube-blue;
+    }
+  }
+}

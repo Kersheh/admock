@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CookieService } from 'ngx-cookie-service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgxFileDropModule } from 'ngx-file-drop';
 
 // app config
 import { AppMaterialModule } from './app-material.module';
@@ -34,6 +35,7 @@ import { ProfileComponent } from 'src/components/views/profile/profile.component
 import { SocialMediaIconComponent } from 'src/components/shared/social-media-icon/social-media-icon.component';
 import { LoginDialogComponent } from 'src/components/shared/login-dialog/login-dialog.component';
 import { AdRenderPanelComponent } from 'src/components/shared/ad-render-panel/ad-render-panel.component';
+import { UploadFileComponent } from 'src/components/shared/upload-file/upload-file.component';
 
 @NgModule({
   imports: [
@@ -41,7 +43,8 @@ import { AdRenderPanelComponent } from 'src/components/shared/ad-render-panel/ad
     AppTranslateModule,
     AppRoutingModule,
     FlexLayoutModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxFileDropModule
   ],
   declarations: [
     BigIntegerPipe,
@@ -60,7 +63,8 @@ import { AdRenderPanelComponent } from 'src/components/shared/ad-render-panel/ad
     SnapchatComponent,
     LinkedinComponent,
     TiktokComponent,
-    AdRenderPanelComponent
+    AdRenderPanelComponent,
+    UploadFileComponent
   ],
   providers: [
     CookieService

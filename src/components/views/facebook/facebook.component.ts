@@ -42,6 +42,8 @@ export class FacebookComponent implements OnInit {
       socialLikes: number;
       socialComments: number;
       socialShares: number;
+      pageLogo: any;
+      adImage: any;
     };
   };
 
@@ -66,7 +68,9 @@ export class FacebookComponent implements OnInit {
       socialReactions: [[]],
       socialLikes: [''],
       socialComments: [''],
-      socialShares: ['']
+      socialShares: [''],
+      pageLogo: [],
+      adImage: []
     });
 
     this.facebookFormDefaults = {
@@ -79,7 +83,9 @@ export class FacebookComponent implements OnInit {
         socialReactions: [],
         socialLikes: 0,
         socialComments: 0,
-        socialShares: 0
+        socialShares: 0,
+        pageLogo: null,
+        adImage: null
       }
     };
 
@@ -119,5 +125,13 @@ export class FacebookComponent implements OnInit {
       prevSelectedReactions.concat(selectedReactionChangeEvent.value);
 
     this.facebookImageFormGroup.patchValue({ socialReactions: selectedReactions });
+  }
+
+  setPageLogo($event: any) {
+    this.facebookImageFormGroup.patchValue({ pageLogo: $event });
+  }
+
+  setPageImage($event: any) {
+    this.facebookImageFormGroup.patchValue({ adImage: $event });
   }
 }

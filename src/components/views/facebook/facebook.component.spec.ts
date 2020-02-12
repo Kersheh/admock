@@ -4,6 +4,7 @@ import { MockComponent } from 'ng-mocks';
 import { AppMaterialModule } from 'src/app/app-material.module';
 import { AppTranslateModule } from 'src/app/app-translate.module';
 import { AdRenderPanelComponent } from 'src/components/shared/ad-render-panel/ad-render-panel.component';
+import { UploadFileComponent } from 'src/components/shared/upload-file/upload-file.component';
 
 import { FacebookComponent } from './facebook.component';
 
@@ -19,7 +20,8 @@ describe('FacebookComponent', () => {
       ],
       declarations: [
         FacebookComponent,
-        MockComponent(AdRenderPanelComponent)
+        MockComponent(AdRenderPanelComponent),
+        MockComponent(UploadFileComponent)
       ]
     })
     .compileComponents();

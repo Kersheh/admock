@@ -1,0 +1,16 @@
+<div class="upload-file">
+  <div *ngIf="tagName" class="upload-file__header">{{ tagName | translate }}</div>
+
+  <ngx-file-drop (onFileDrop)="fileDropped($event)" accept="png">
+      <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+        <button mat-button class="mat-button--blue upload-file__btn"
+                type="button" (click)="openFileSelector()" fxLayoutAlign="center center">
+          <div class="upload-file__btn-icon-wrapper" fxLayoutAlign="center center">
+            <mat-icon [ngClass]="{ 'hide': (displayComplete || displayError) }" class="upload-file__btn-icon">camera_alt</mat-icon>
+            <mat-icon [ngClass]="{ 'hide': !displayComplete }" class="upload-file__btn-icon done">done</mat-icon>
+            <mat-icon [ngClass]="{ 'hide': !displayError }" class="upload-file__btn-icon error">error</mat-icon>
+          </div>
+        </button>
+      </ng-template>
+  </ngx-file-drop>
+</div>

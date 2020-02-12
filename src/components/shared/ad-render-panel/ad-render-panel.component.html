@@ -5,7 +5,8 @@
     <div fxLayoutAlign="center" class="facebook" *ngIf="viewName === MEDIA_TYPES.FACEBOOK">
       <div class="facebook__card mat-elevation-z2">
         <div class="facebook-header" fxLayout="row">
-          <div class="facebook-header__logo"></div>
+          <div *ngIf="!previewProps.facebook?.pageLogo" class="facebook-header__logo"></div>
+          <img *ngIf="previewProps.facebook?.pageLogo" class="facebook-header__logo" [src]="previewProps.facebook?.pageLogo"/>
 
           <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
             <div fxLayout="column">
@@ -26,7 +27,9 @@
           {{ previewProps.facebook?.postMessage || defaults.image.postMessage }}
         </div>
 
-        <div class="facebook-image"></div>
+        <div class="facebook-image-container">
+          <img *ngIf="previewProps.facebook?.adImage" class="facebook-image" [src]="previewProps.facebook?.adImage"/>
+        </div>
 
         <a [href]="previewProps.facebook?.linkUrl ? '//' + previewProps.facebook?.linkUrl : ''"
            target="_blank" rel="noreferrer" class="facebook-link" fxLayout="row" fxLayoutAlign="space-between center">

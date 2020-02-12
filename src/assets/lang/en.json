@@ -34,9 +34,8 @@
 
   "AD_RENDER_PANEL_TITLE": "Preview",
 
-  "FACEBOOK_POST_INFO_HEADER": "Post Info",
-  "FACEBOOK_PAGE_INFO_TEXT": "Provide a Page Name and Page Logo to display as the page posting the ad.",
-  "FACEBOOK_MESSAGE_INFO_TEXT": "Insert the message of the Facebook post.",
+  "FACEBOOK_POST_INFO_HEADER": "Ad Post Information",
+  "FACEBOOK_MESSAGE_INFO_TEXT": "Insert your Facebook Ad post message.",
   "FACEBOOK_CALL_TO_ACTION_INFO_TEXT": "Optional: Select a Call to Action button text.",
   "FACEBOOK_LINK_INFO_HEADER": "Link Info",
   "FACEBOOK_LINK_INFO_TEXT": "Provide a header, description, and caption for the post's link.",
@@ -47,10 +46,11 @@
   "FACEBOOK_FIELD_LINK_DESC_TEXT": "Link Description",
   "FACEBOOK_FIELD_LINK_CAPTION_TEXT": "Link Caption",
   "FACEBOOK_SOCIAL_HEADER": "Social Info",
-  "FACEBOOK_SOCIAL_TEXT": "Provide reaction emojis and like, comment, and share counts.",
   "FACEBOOK_SOCIAL_LIKES_TEXT": "Likes",
   "FACEBOOK_SOCIAL_COMMENTS_TEXT": "Comments",
   "FACEBOOK_SOCIAL_SHARES_TEXT": "Shares",
+  "FACEBOOK_UPLOAD_LOGO_TEXT": "Page Logo",
+  "FACEBOOK_UPLOAD_IMAGE_TEXT": "Ad Image",
 
   "FACEBOOK_CTA_BTN_NONE": "None",
   "FACEBOOK_CTA_BTN_APPLY_NOW": "Apply Now",

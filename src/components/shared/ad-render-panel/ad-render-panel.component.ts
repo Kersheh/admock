@@ -19,6 +19,8 @@ interface PreviewProps {
     socialLikes: number;
     socialComments: number;
     socialShares: number;
+    pageLogo: any;
+    adImage: any;
   };
 }
 

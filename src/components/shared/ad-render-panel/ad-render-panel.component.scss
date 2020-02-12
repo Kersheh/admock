@@ -43,7 +43,6 @@
         min-height: 40px;
         height: 40px;
         border: 1px solid rgba($color-black, .1);
-        background-color: #fcdd32;
         cursor: pointer;
       }
 
@@ -106,9 +105,15 @@
     }
 
     &-image {
-      height: 260px;
-      border-top: 1px solid $color-zircon;
-      border-bottom: 1px solid $color-zircon;
+      width: 100%;
+      height: 100%;
+
+      &-container {
+        height: 260px;
+        border-top: 1px solid $color-zircon;
+        border-bottom: 1px solid $color-zircon;
+        box-sizing: border-box;
+      }
     }
 
     &-link {

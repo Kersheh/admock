@@ -1,9 +1,9 @@
 import { LocalStorageService } from 'src/shared/services/local-storage.service';
 
 const METHOD_RETURNS = {
-  loadUserLocalStorage: undefined,
-  setUserLocalStorage: undefined,
-  getUserLocalStorage: undefined
+  loadUserLocalStorage: () => {},
+  setUserLocalStorage: () => {},
+  getUserLocalStorage: () => {}
 };
 
 export default {
