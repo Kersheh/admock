@@ -3,6 +3,7 @@
 @include mat-core;
 
 @import 'src/styles/layout/base';
+@import 'src/styles/layout/scrollbar';
 
 @import 'src/styles/abstract/colors';
 @import 'src/styles/abstract/fonts';
@@ -17,4 +18,4 @@
 
 @import 'src/styles/modules/ngx-file-drop';
 
-@import 'src/styles/vendor/facebook';
+@import 'src/styles/vendor/facebook-icons';

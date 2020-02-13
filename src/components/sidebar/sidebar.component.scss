@@ -24,14 +24,12 @@
     padding: 0 18px;
 
     &--scroll-overflow {
-      overflow-y: scroll;
       overflow-x: hidden;
     }
   }
 
   &-logo {
-    cursor: default;
-    user-select: none;
+    @include disable-select;
     color: $color-white;
     font-size: 32px;
     font-weight: 300;
@@ -45,7 +43,7 @@
 
     &-desc {
       @include collapse-width(100%);
-      user-select: none;
+      @include disable-select;
       font-weight: 400;
       font-size: 12px;
       letter-spacing: 1px;

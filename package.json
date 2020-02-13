@@ -1,15 +1,14 @@
 {
   "name": "admock",
   "description": "Admock (name TBD) frontend application",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "Matt Breckon",
   "private": true,
   "scripts": {
     "start": "ng serve --host=127.0.0.1 --port=5000 --open=true",
-    "build": "ng build",
-    "build:prod": "ng build --prod",
-    "deploy": "./scripts/buildImage.sh latest && ./scripts/runContainer.sh",
-    "deploy:prod": "./scripts/buildImage.sh latest && ./scripts/pushImage.sh && ./scripts/deployProdContainer.sh",
+    "build": "ng build --prod",
+    "deploy": "npm run build && docker image build -t admock:latest . && ./scripts/runContainer.sh",
+    "deploy:prod": "npm run build && ./scripts/deployProd.sh",
     "test": "ng test",
     "lint": "sass-lint -c .sass-lint.yml 'src/**/*.scss' -v -q && ng lint"
   },

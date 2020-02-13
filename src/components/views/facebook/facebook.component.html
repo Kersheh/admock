@@ -43,7 +43,6 @@
               </div>
 
               <div fxLayout="column" class="full-width">
-                <div class="facebook__text" translate>FACEBOOK_MESSAGE_INFO_TEXT</div>
                 <mat-form-field class="facebook__textarea">
                   <textarea matInput matTextareaAutosize formControlName="postMessage"
                             [placeholder]="'FACEBOOK_FIELD_POST_MSG_TEXT' | translate">
@@ -79,7 +78,6 @@
               </div>
 
               <div class="full-width" fxLayout="column">
-                <div class="facebook__text" translate>FACEBOOK_CALL_TO_ACTION_INFO_TEXT</div>
                 <div fxLayout="row">
                   <mat-form-field fxFlex="49">
                     <mat-select [placeholder]="'FACEBOOK_FIELD_CTA_TEXT' | translate" formControlName="ctaButton">
@@ -96,7 +94,7 @@
 
               <div class="full-width" fxLayout="row" fxLayoutAlign="space-between center">
                 <mat-form-field fxFlex="49">
-                  <input matInput formControlName="socialLikes" maxlength="9"
+                  <input matInput formControlName="socialLikes" maxlength="9" appNumbersOnly
                          [placeholder]="'FACEBOOK_SOCIAL_LIKES_TEXT' | translate" autocomplete="off">
                 </mat-form-field>
 
@@ -133,12 +131,12 @@
 
               <div class="full-width" fxLayout="row wrap" fxLayoutAlign="space-between">
                 <mat-form-field fxFlex="49">
-                  <input matInput formControlName="socialComments" maxlength="9"
+                  <input matInput formControlName="socialComments" maxlength="9" appNumbersOnly
                          [placeholder]="'FACEBOOK_SOCIAL_COMMENTS_TEXT' | translate" autocomplete="off">
                 </mat-form-field>
 
                 <mat-form-field fxFlex="49">
-                  <input matInput formControlName="socialShares" maxlength="9"
+                  <input matInput formControlName="socialShares" maxlength="9" appNumbersOnly
                          [placeholder]="'FACEBOOK_SOCIAL_SHARES_TEXT' | translate" autocomplete="off">
                 </mat-form-field>
               </div>

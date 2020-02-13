@@ -82,7 +82,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   setView(view: string): void {
-    console.log(view);
     this.state.category = view;
     this.localStorageService.setUserLocalStorage(this.STORE_NAME, this.state);
   }

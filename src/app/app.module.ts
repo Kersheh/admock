@@ -15,6 +15,9 @@ import { AppComponent } from './app.component';
 // pipes
 import { BigIntegerPipe } from 'src/shared/pipes/big-integer.pipe';
 
+// directives
+import { NumbersOnlyDirective } from 'src/shared/directives/numbers-only.directive';
+
 // components
 import { SidebarComponent } from 'src/components/sidebar/sidebar.component';
 import { FooterComponent } from 'src/components/footer/footer.component';
@@ -47,8 +50,9 @@ import { UploadFileComponent } from 'src/components/shared/upload-file/upload-fi
     NgxFileDropModule
   ],
   declarations: [
-    BigIntegerPipe,
     AppComponent,
+    BigIntegerPipe,
+    NumbersOnlyDirective,
     SidebarComponent,
     SocialMediaIconComponent,
     FooterComponent,

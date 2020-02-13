@@ -35,8 +35,6 @@
   "AD_RENDER_PANEL_TITLE": "Preview",
 
   "FACEBOOK_POST_INFO_HEADER": "Ad Post Information",
-  "FACEBOOK_MESSAGE_INFO_TEXT": "Insert your Facebook Ad post message.",
-  "FACEBOOK_CALL_TO_ACTION_INFO_TEXT": "Optional: Select a Call to Action button text.",
   "FACEBOOK_LINK_INFO_HEADER": "Link Info",
   "FACEBOOK_LINK_INFO_TEXT": "Provide a header, description, and caption for the post's link.",
   "FACEBOOK_FIELD_PAGE_NAME_TEXT": "Page Name",

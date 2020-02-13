@@ -1,5 +1,5 @@
 @import 'src/styles/abstract/mixins';
-@import 'src/styles/vendor/facebook';
+@import 'src/styles/vendor/facebook-icons';
 
 .facebook {
   width: 100%;
@@ -7,7 +7,6 @@
 
   &-container {
     @include view-layout;
-    overflow-y: scroll;
 
     &__header {
       font-size: 32px;

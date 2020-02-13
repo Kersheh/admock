@@ -1,5 +1,5 @@
 @mixin view-layout {
-  padding: 32px;
+  padding: 28px;
 }
 
 @mixin cubic-transition($prop: all, $time: .6s) {
@@ -10,4 +10,9 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@mixin disable-select {
+  cursor: default;
+  user-select: none;
 }

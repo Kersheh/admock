@@ -66,9 +66,9 @@ export class FacebookComponent implements OnInit {
       linkDesc: ['', Validators.maxLength(this.LINK_DESC_MAX_LEN)],
       linkCaption: ['', Validators.maxLength(this.LINK_CAPTION_MAX_LEN)],
       socialReactions: [[]],
-      socialLikes: [''],
-      socialComments: [''],
-      socialShares: [''],
+      socialLikes: [0],
+      socialComments: [0],
+      socialShares: [0],
       pageLogo: [],
       adImage: []
     });
