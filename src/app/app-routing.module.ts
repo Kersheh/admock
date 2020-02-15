@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { FacebookComponent } from 'src/components/views/facebook/facebook.component';
+import CONSTANTS from 'src/shared/constants';
+import { FormPanelComponent } from 'src/components/shared/form-panel/form-panel.component';
+// import { FacebookComponent } from 'src/components/views/facebook/facebook.component';
 import { InstagramComponent } from 'src/components/views/instagram/instagram.component';
 import { TwitterComponent } from 'src/components/views/twitter/twitter.component';
 import { GoogleSearchComponent } from 'src/components/views/google-search/google-search.component';
@@ -14,11 +16,17 @@ import { TiktokComponent } from 'src/components/views/tiktok/tiktok.component';
 const routes: Routes = [
   {
     path: 'facebook',
-    component: FacebookComponent
+    component: FormPanelComponent,
+    data: {
+      mediaType: CONSTANTS.MEDIA_TYPES.FACEBOOK
+    }
   },
   {
     path: 'instagram',
-    component: InstagramComponent
+    component: InstagramComponent,
+    // data: {
+    //   mediaType: CONSTANTS.MEDIA_TYPES.INSTAGRAM
+    // }
   },
   {
     path: 'twitter',

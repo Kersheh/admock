@@ -39,6 +39,7 @@ import { SocialMediaIconComponent } from 'src/components/shared/social-media-ico
 import { LoginDialogComponent } from 'src/components/shared/login-dialog/login-dialog.component';
 import { AdRenderPanelComponent } from 'src/components/shared/ad-render-panel/ad-render-panel.component';
 import { UploadFileComponent } from 'src/components/shared/upload-file/upload-file.component';
+import { FormPanelComponent } from '../components/shared/form-panel/form-panel.component';
 
 @NgModule({
   imports: [
@@ -68,7 +69,8 @@ import { UploadFileComponent } from 'src/components/shared/upload-file/upload-fi
     LinkedinComponent,
     TiktokComponent,
     AdRenderPanelComponent,
-    UploadFileComponent
+    UploadFileComponent,
+    FormPanelComponent
   ],
   providers: [
     CookieService

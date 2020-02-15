@@ -6,6 +6,7 @@ import { filter } from 'rxjs/operators';
 import { map } from 'lodash';
 
 import CONSTANTS from 'src/shared/constants';
+import { FormPanelService } from 'src/components/shared/form-panel/form-panel.service';
 import { LocalStorageService } from 'src/shared/services/local-storage.service';
 // import { UserService, User } from 'src/shared/services/user.service';
 // import { LoginDialogComponent } from 'src/components/shared/login-dialog/login-dialog.component';
@@ -49,7 +50,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
     public localStorageService: LocalStorageService,
     // public userService: UserService,
     public router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public formPanelService: FormPanelService
   ) {}
 
   ngOnInit() {
@@ -76,6 +78,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.showProfileMenu = false;
     this.state.isCollapsed = !this.state.isCollapsed;
     this.localStorageService.setUserLocalStorage(this.STORE_NAME, this.state);
+
+    this.formPanelService.updateTabBorderPosition();
 
     // this.lockProfileMenuBtn = true;
     // timer(600).subscribe(() => this.lockProfileMenuBtn = false);

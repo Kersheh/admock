@@ -1,0 +1,30 @@
+<div class="form-panel" fxLayout="row">
+  <mat-tab-group class="form-panel-tab-group" [selectedIndex]="tabIndex"
+                 fxFlex="40" animationDuration="0"
+                 mat-stretch-tabs (selectedTabChange)="tabChange($event)">
+    <mat-tab fxFlex="100" *ngFor="let tab of tabs; let i = index">
+      <ng-template matTabLabel>
+        <mat-icon>web</mat-icon>
+      </ng-template>
+
+      <button mat-raised-button class="mat-raised-button--red form-panel__delete-btn"
+              (click)="removeTab()" [disabled]="tabs.length <= 1">
+        <mat-icon>close</mat-icon>
+      </button>
+
+      <app-facebook [tabIndex]="i" [updateAdRenderPanel]="updateAdRenderPanel"></app-facebook>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template matTabLabel>
+        <mat-icon>note_add</mat-icon>
+      </ng-template>
+
+      <!-- <div fxLayoutAlign="center center">
+        <mat-spinner></mat-spinner>
+      </div> -->
+    </mat-tab>
+  </mat-tab-group>
+
+  <app-ad-render-panel class="form-panel__ad-render-panel" fxFlex="60"></app-ad-render-panel>
+</div>

@@ -1,13 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
-import { MatTabChangeEvent } from '@angular/material/tabs';
 import { TranslateService } from '@ngx-translate/core';
+import { Subject, Subscription } from 'rxjs';
 
 import CONSTANTS from 'src/shared/constants';
 import { PreviewPanelService } from 'src/shared/services/preview-panel.service';
 
-const TAB_ORDER = ['image', 'video', 'carousel'];
+const FACEBOOK_AD_TYPES = [
+  {
+    value: 'image',
+    translate: 'Image',
+    icon: 'photo_camera'
+  },
+  {
+    value: 'video',
+    translate: 'Video',
+    icon: 'videocam'
+  },
+  {
+    value: 'carousel',
+    translate: 'Carousel',
+    icon: 'view_carousel'
+  }
+];
 
 export const FACEBOOK_CALL_TO_ACTION_OPTS = [
   { value: 'apply', translate: 'FACEBOOK_CTA_BTN_APPLY_NOW' },
@@ -26,27 +42,30 @@ export const FACEBOOK_CALL_TO_ACTION_OPTS = [
   templateUrl: './facebook.component.html',
   styleUrls: ['./facebook.component.scss']
 })
-export class FacebookComponent implements OnInit {
+export class FacebookComponent implements OnInit, OnDestroy {
+  @Input() public tabIndex: number;
+  @Input() public updateAdRenderPanel: Subject<number>;
+
+  public updateAdRenderPanel$: Subscription;
   public viewName = 'facebook';
   public tabSelection = 'image';
   public activeFormGroup: FormGroup;
   public facebookImageFormGroup: FormGroup;
   public facebookFormDefaults: {
-    image: {
-      pageName: string;
-      postMessage: string;
-      linkUrl: string;
-      linkDesc: string;
-      linkCaption: string;
-      socialReactions: Array<string>;
-      socialLikes: number;
-      socialComments: number;
-      socialShares: number;
-      pageLogo: any;
-      adImage: any;
-    };
+    pageName: string;
+    postMessage: string;
+    linkUrl: string;
+    linkDesc: string;
+    linkCaption: string;
+    socialReactions: Array<string>;
+    socialLikes: number;
+    socialComments: number;
+    socialShares: number;
+    pageLogo: any;
+    adImage: any;
   };
 
+  public FACEBOOK_AD_TYPES = FACEBOOK_AD_TYPES;
   public CALL_TO_ACTION_OPTS = FACEBOOK_CALL_TO_ACTION_OPTS;
   public PAGE_NAME_MAX_LEN = 30;
   public LINK_URL_MAX_LEN = 30;
@@ -59,6 +78,7 @@ export class FacebookComponent implements OnInit {
     private translate: TranslateService
   ) {
     this.facebookImageFormGroup = this.fb.group({
+      adType: [FACEBOOK_AD_TYPES[0]],
       pageName: ['', Validators.maxLength(this.PAGE_NAME_MAX_LEN)],
       postMessage: [''],
       ctaButton: [''],
@@ -74,64 +94,51 @@ export class FacebookComponent implements OnInit {
     });
 
     this.facebookFormDefaults = {
-      image: {
-        pageName: this.translate.instant('FACEBOOK_PREVIEW_DEFAULT_PAGE_NAME'),
-        postMessage: this.translate.instant('FACEBOOK_PREVIEW_DEFAULT_POST_MESSAGE'),
-        linkUrl: this.translate.instant('FACEBOOK_PREVIEW_DEFAULT_LINK_URL'),
-        linkDesc: this.translate.instant('FACEBOOK_PREVIEW_DEFAULT_LINK_DESC'),
-        linkCaption: this.translate.instant('FACEBOOK_PREVIEW_DEFAULT_LINK_CAPTION'),
-        socialReactions: [],
-        socialLikes: 0,
-        socialComments: 0,
-        socialShares: 0,
-        pageLogo: null,
-        adImage: null
-      }
+      pageName: this.translate.instant('FACEBOOK_PREVIEW_DEFAULT_PAGE_NAME'),
+      postMessage: this.translate.instant('FACEBOOK_PREVIEW_DEFAULT_POST_MESSAGE'),
+      linkUrl: this.translate.instant('FACEBOOK_PREVIEW_DEFAULT_LINK_URL'),
+      linkDesc: this.translate.instant('FACEBOOK_PREVIEW_DEFAULT_LINK_DESC'),
+      linkCaption: this.translate.instant('FACEBOOK_PREVIEW_DEFAULT_LINK_CAPTION'),
+      socialReactions: [],
+      socialLikes: 0,
+      socialComments: 0,
+      socialShares: 0,
+      pageLogo: null,
+      adImage: null
     };
 
     this.activeFormGroup = this.facebookImageFormGroup;
-    this.tabSelection = TAB_ORDER[0];
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.previewPanel.setForm(CONSTANTS.MEDIA_TYPES.FACEBOOK, this.activeFormGroup, this.tabSelection, this.facebookFormDefaults);
 
+    // watch for form changes to update ad render panel view
     this.facebookImageFormGroup.valueChanges.subscribe(() => {
       this.previewPanel.setForm(CONSTANTS.MEDIA_TYPES.FACEBOOK, this.activeFormGroup, this.tabSelection, this.facebookFormDefaults);
     });
+
+    // update active ad render panel view on parent tab change
+    this.updateAdRenderPanel$ = this.updateAdRenderPanel.subscribe((index: number) => {
+      if(index === this.tabIndex) {
+        this.previewPanel.setForm(CONSTANTS.MEDIA_TYPES.FACEBOOK, this.activeFormGroup, this.tabSelection, this.facebookFormDefaults);
+      }
+    });
   }
 
-  tabChange(tabChangeEvent: MatTabChangeEvent) {
-    this.tabSelection = TAB_ORDER[tabChangeEvent.index];
-    switch(this.tabSelection) {
-      case 'image':
-        this.activeFormGroup = this.facebookImageFormGroup;
-        break;
-      case 'video':
-        this.activeFormGroup = this.facebookImageFormGroup;
-        break;
-      case 'carousel':
-        this.activeFormGroup = this.facebookImageFormGroup;
-        break;
-    }
-
-    this.previewPanel.setForm(CONSTANTS.MEDIA_TYPES.FACEBOOK, this.activeFormGroup, this.tabSelection, this.facebookFormDefaults);
+  ngOnDestroy(): void {
+    this.updateAdRenderPanel$.unsubscribe();
   }
 
-  updateSelectedReactions(selectedReactionChangeEvent: MatButtonToggleChange) {
-    const prevSelectedReactions = this.facebookImageFormGroup.get('socialReactions').value;
-    const selectedReactions = prevSelectedReactions.includes(selectedReactionChangeEvent.value) ?
-      prevSelectedReactions.filter((value: string) => value !== selectedReactionChangeEvent.value) :
-      prevSelectedReactions.concat(selectedReactionChangeEvent.value);
-
-    this.facebookImageFormGroup.patchValue({ socialReactions: selectedReactions });
+  updateSelectedReactions(selectedReactionChangeEvent: MatButtonToggleChange): void {
+    this.facebookImageFormGroup.patchValue({ socialReactions: selectedReactionChangeEvent.value });
   }
 
-  setPageLogo($event: any) {
+  setPageLogo($event: any): void {
     this.facebookImageFormGroup.patchValue({ pageLogo: $event });
   }
 
-  setPageImage($event: any) {
+  setPageImage($event: any): void {
     this.facebookImageFormGroup.patchValue({ adImage: $event });
   }
 }

@@ -3,7 +3,7 @@
 mat-tab-group {
   &.mat-tab-group {
     .mat-tab-list {
-      transform: none !important; // sass-lint:disable-line no-important
+      // transform: none !important; // sass-lint:disable-line no-important
 
       .mat-ink-bar {
         background-color: $color-danube-blue;
@@ -25,8 +25,14 @@ mat-tab-group {
       }
     }
 
+    .mat-tab-header {
+      max-width: 410px;
+      min-width: 100%;
+    }
+
     .mat-tab-header-pagination {
-      display: none;
+      // display: none;
+      box-shadow: none;
     }
   }
 }

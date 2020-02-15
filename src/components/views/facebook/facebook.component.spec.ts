@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockComponent } from 'ng-mocks';
+import { Subject } from 'rxjs';
 
 import { AppMaterialModule } from 'src/app/app-material.module';
 import { AppTranslateModule } from 'src/app/app-translate.module';
-import { AdRenderPanelComponent } from 'src/components/shared/ad-render-panel/ad-render-panel.component';
 import { UploadFileComponent } from 'src/components/shared/upload-file/upload-file.component';
 
 import { FacebookComponent } from './facebook.component';
@@ -20,7 +20,6 @@ describe('FacebookComponent', () => {
       ],
       declarations: [
         FacebookComponent,
-        MockComponent(AdRenderPanelComponent),
         MockComponent(UploadFileComponent)
       ]
     })
@@ -30,6 +29,7 @@ describe('FacebookComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FacebookComponent);
     component = fixture.componentInstance;
+    component.updateAdRenderPanel = new Subject<number>();
     fixture.detectChanges();
   });
 

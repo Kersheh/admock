@@ -6,22 +6,26 @@ import CONSTANTS from 'src/shared/constants';
 import { PreviewPanelService, PreviewPanel } from 'src/shared/services/preview-panel.service';
 import { FACEBOOK_CALL_TO_ACTION_OPTS } from 'src/components/views/facebook/facebook.component';
 
-interface PreviewProps {
-  facebook: {
-    type: 'image' | 'video' | 'carousel';
-    pageName: string;
-    postMessage: string;
-    ctaButton: string;
-    linkUrl: string;
-    linkDesc: string;
-    linkCaption: string;
-    socialReactions: Array<string>;
-    socialLikes: number;
-    socialComments: number;
-    socialShares: number;
-    pageLogo: any;
-    adImage: any;
+interface PreviewFacebook {
+  adType: {
+    value: 'image' | 'video' | 'carousel';
   };
+  pageName: string;
+  postMessage: string;
+  ctaButton: string;
+  linkUrl: string;
+  linkDesc: string;
+  linkCaption: string;
+  socialReactions: Array<string>;
+  socialLikes: number;
+  socialComments: number;
+  socialShares: number;
+  pageLogo: any;
+  adImage: any;
+}
+
+interface PreviewProps {
+  facebook: PreviewFacebook;
 }
 
 @Component({

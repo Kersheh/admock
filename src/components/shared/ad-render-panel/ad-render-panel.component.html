@@ -12,7 +12,7 @@
 
           <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
             <div fxLayout="column">
-              <div class="facebook-header__page-name">{{ previewProps.facebook?.pageName || defaults.image.pageName }}</div>
+              <div class="facebook-header__page-name">{{ previewProps.facebook?.pageName || defaults.pageName }}</div>
               <div fxFlex="row" fxLayoutAlign="start center" class="facebook-header__sponsored">
                 <span class="facebook-header__sponsored-link" translate>FACEBOOK_PREVIEW_SPONSORED</span>
                 <span>&nbsp;·&nbsp;</span>
@@ -26,7 +26,7 @@
 
         <!-- TODO: Handle new lines correctly with 6px margin-bottom -->
         <div class="facebook-message">
-          {{ previewProps.facebook?.postMessage || defaults.image.postMessage }}
+          {{ previewProps.facebook?.postMessage || defaults.postMessage }}
         </div>
 
         <div class="facebook-image-container">
@@ -39,9 +39,9 @@
         <a [href]="previewProps.facebook?.linkUrl ? '//' + previewProps.facebook?.linkUrl : ''"
            target="_blank" rel="noreferrer" class="facebook-link" fxLayout="row" fxLayoutAlign="space-between center">
           <div fxLayout="column">
-            <div class="facebook-link__url">{{ previewProps.facebook?.linkUrl || defaults.image.linkUrl }}</div>
-            <div class="facebook-link__desc">{{ previewProps.facebook?.linkDesc || defaults.image.linkDesc }}</div>
-            <div class="facebook-link__caption">{{ previewProps.facebook?.linkCaption || defaults.image.linkCaption }}</div>
+            <div class="facebook-link__url">{{ previewProps.facebook?.linkUrl || defaults.linkUrl }}</div>
+            <div class="facebook-link__desc">{{ previewProps.facebook?.linkDesc || defaults.linkDesc }}</div>
+            <div class="facebook-link__caption">{{ previewProps.facebook?.linkCaption || defaults.linkCaption }}</div>
           </div>
 
           <div *ngIf="previewProps.facebook?.ctaButton" class="facebook-link__btn">

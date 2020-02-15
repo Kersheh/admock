@@ -1,0 +1,19 @@
+.form-panel {
+  width: 100%;
+  height: 100%;
+
+  &-tab-group {
+    min-width: 300px;
+    position: relative;
+  }
+
+  &__delete-btn {
+    position: absolute;
+    right: 16px;
+    z-index: 2;
+  }
+
+  &__ad-render-panel {
+    min-width: 548px;
+  }
+}

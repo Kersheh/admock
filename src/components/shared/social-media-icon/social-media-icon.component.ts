@@ -50,7 +50,7 @@ export class SocialMediaIconComponent implements OnInit {
 
   public activeIcon: IconDefinition;
   private ICONS = {
-  [CONSTANTS.MEDIA_TYPES.FACEBOOK]: faFacebook,
+    [CONSTANTS.MEDIA_TYPES.FACEBOOK]: faFacebook,
     [CONSTANTS.MEDIA_TYPES.INSTAGRAM]: faInstagram,
     [CONSTANTS.MEDIA_TYPES.TWITTER]: faTwitter,
     [CONSTANTS.MEDIA_TYPES.GOOGLE_SEARCH]: faGoogle,

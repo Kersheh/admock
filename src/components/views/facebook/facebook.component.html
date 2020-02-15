@@ -1,183 +1,146 @@
-<div class="facebook" fxLayout="row">
-  <mat-tab-group class="facebook-tab-group" fxFlex="40" animationDuration="400ms" mat-stretch-tabs (selectedTabChange)="tabChange($event)">
-    <mat-tab>
-      <ng-template matTabLabel>
-        <mat-icon>photo_camera</mat-icon>
-        <span fxShow="false" fxShow.gt-sm translate>VIEW_TAB_GROUP_IMAGE</span>
-      </ng-template>
+<div class="facebook-container">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="facebook-container__header" translate>VIEW_TITLE_FACEBOOK</span>
 
-      <div class="facebook-container">
-        <div class="facebook-container__header" fxLayout="row">
-          <span class="facebook-container__header-bold" translate>VIEW_TITLE_FACEBOOK</span>
-          <span translate>VIEW_TAB_GROUP_IMAGE</span>
-        </div>
+    <mat-form-field fxFlex="35" [formGroup]="facebookImageFormGroup">
+      <mat-select formControlName="adType">
+        <mat-select-trigger fxLayoutAlign="start center">
+          <mat-icon class="facebook-container__type-icon">{{facebookImageFormGroup.get('adType').value.icon}}</mat-icon>
+          <span>{{facebookImageFormGroup.get('adType').value.translate | translate}}</span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let type of FACEBOOK_AD_TYPES" [value]="type" [disabled]="type.value === 'video' || type.value ==='carousel'">
+          <mat-icon>{{type.icon}}</mat-icon>
+          <span translate>{{type.translate}}</span>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-        <div>
-          <form [formGroup]="facebookImageFormGroup">
-            <div fxLayout="column" fxLayoutAlign="start start">
-              <h4 translate>FACEBOOK_POST_INFO_HEADER</h4>
+  <form [formGroup]="facebookImageFormGroup">
+    <div fxLayout="column" fxLayoutAlign="start start">
+      <h4 translate>FACEBOOK_POST_INFO_HEADER</h4>
 
-              <div fxLayout="column" class="full-width">
-                <div fxLayout="row">
-                  <div fxFlex="100" fxLayoutAlign="center stretch" fxLayout="column">
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                      <mat-form-field fxFlex="60">
-                        <input matInput #pageNameInput formControlName="pageName"
-                               [placeholder]="'FACEBOOK_FIELD_PAGE_NAME_TEXT' | translate" autocomplete="off">
-                        <mat-hint align="end">{{pageNameInput.value?.length || 0}}/{{PAGE_NAME_MAX_LEN}}</mat-hint>
-                        <mat-error *ngIf="facebookImageFormGroup.get('pageName').invalid">Recommeneded Character Limit: {{PAGE_NAME_MAX_LEN}}</mat-error>
-                      </mat-form-field>
+      <div fxLayout="column" class="full-width">
+        <div fxLayout="row">
+          <div fxFlex="100" fxLayoutAlign="center stretch" fxLayout="column">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-form-field fxFlex="60">
+                <input matInput #pageNameInput formControlName="pageName"
+                       [placeholder]="'FACEBOOK_FIELD_PAGE_NAME_TEXT' | translate" autocomplete="off">
+                <mat-hint align="end">{{pageNameInput.value?.length || 0}}/{{PAGE_NAME_MAX_LEN}}</mat-hint>
+                <mat-error *ngIf="facebookImageFormGroup.get('pageName').invalid">Recommeneded Character Limit: {{PAGE_NAME_MAX_LEN}}</mat-error>
+              </mat-form-field>
 
-                      <app-upload-file fxFlex="25" matTooltip="Drag image here or click camera"
-                                       matTooltipPosition="above" class="facebook__upload"
-                                       (updateFile)="setPageLogo($event)"
-                                       tagName="FACEBOOK_UPLOAD_LOGO_TEXT"></app-upload-file>
-                    </div>
-
-                    <app-upload-file matTooltip="Drag image here or click camera"
-                                     matTooltipPosition="above" class="facebook__upload"
-                                     (updateFile)="setPageImage($event)"
-                                     tagName="FACEBOOK_UPLOAD_IMAGE_TEXT"></app-upload-file>
-                  </div>
-                </div>
-              </div>
-
-              <div fxLayout="column" class="full-width">
-                <mat-form-field class="facebook__textarea">
-                  <textarea matInput matTextareaAutosize formControlName="postMessage"
-                            [placeholder]="'FACEBOOK_FIELD_POST_MSG_TEXT' | translate">
-                  </textarea>
-                </mat-form-field>
-              </div>
-
-              <h4 translate>FACEBOOK_LINK_INFO_HEADER</h4>
-
-              <div class="facebook__text" translate>FACEBOOK_LINK_INFO_TEXT</div>
-              <div fxLayout="row" class="full-width">
-                <mat-form-field class="full-width">
-                  <input matInput #linkUrlInput formControlName="linkUrl" [attr.maxlength]="LINK_URL_MAX_LEN"
-                         [placeholder]="'FACEBOOK_FIELD_LINK_URL_TEXT' | translate" autocomplete="off">
-                  <mat-hint align="end">{{linkUrlInput.value?.length || 0}}/{{LINK_URL_MAX_LEN}}</mat-hint>
-                </mat-form-field>
-              </div>
-
-              <div fxLayout="row" class="full-width">
-                <mat-form-field class="full-width">
-                  <input matInput #linkDescInput formControlName="linkDesc" [attr.maxlength]="LINK_DESC_MAX_LEN"
-                         [placeholder]="'FACEBOOK_FIELD_LINK_DESC_TEXT' | translate" autocomplete="off">
-                  <mat-hint align="end">{{linkDescInput.value?.length || 0}}/{{LINK_DESC_MAX_LEN}}</mat-hint>
-                </mat-form-field>
-              </div>
-
-              <div fxLayout="row" class="full-width">
-                <mat-form-field class="full-width">
-                  <input matInput #linkCaptionInput formControlName="linkCaption" [attr.maxlength]="LINK_CAPTION_MAX_LEN"
-                         [placeholder]="'FACEBOOK_FIELD_LINK_CAPTION_TEXT' | translate" autocomplete="off">
-                  <mat-hint align="end">{{linkCaptionInput.value?.length || 0}}/{{LINK_CAPTION_MAX_LEN}}</mat-hint>
-                </mat-form-field>
-              </div>
-
-              <div class="full-width" fxLayout="column">
-                <div fxLayout="row">
-                  <mat-form-field fxFlex="49">
-                    <mat-select [placeholder]="'FACEBOOK_FIELD_CTA_TEXT' | translate" formControlName="ctaButton">
-                      <mat-option>{{'FACEBOOK_CTA_BTN_NONE' | translate}}</mat-option>
-                      <mat-option *ngFor="let callToAction of CALL_TO_ACTION_OPTS" [value]="callToAction.value">
-                        {{callToAction.translate | translate}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </div>
-
-              <h4 translate>FACEBOOK_SOCIAL_HEADER</h4>
-
-              <div class="full-width" fxLayout="row" fxLayoutAlign="space-between center">
-                <mat-form-field fxFlex="49">
-                  <input matInput formControlName="socialLikes" maxlength="9" appNumbersOnly
-                         [placeholder]="'FACEBOOK_SOCIAL_LIKES_TEXT' | translate" autocomplete="off">
-                </mat-form-field>
-
-                <div fxLayout="column" fxFlex="49" fxLayoutAlign="center center">
-                  <mat-button-toggle-group class="facebook__btn-group full-width" fxLayout="row" fxLayoutAlign="space-between" multiple>
-                    <mat-button-toggle fxFlex="34" fxLayoutAlign="center center" value="like" (change)="updateSelectedReactions($event)">
-                      <div class="facebook__icon like"></div>
-                    </mat-button-toggle>
-
-                    <mat-button-toggle fxFlex="33" fxLayoutAlign="center center" value="wow" (change)="updateSelectedReactions($event)">
-                      <div class="facebook__icon wow"></div>
-                    </mat-button-toggle>
-
-                    <mat-button-toggle fxFlex="33" fxLayoutAlign="center center" value="angry" (change)="updateSelectedReactions($event)">
-                      <div class="facebook__icon angry"></div>
-                    </mat-button-toggle>
-                  </mat-button-toggle-group>
-
-                  <mat-button-toggle-group class="facebook__btn-group full-width" fxLayout="row" fxLayoutAlign="space-between" multiple>
-                    <mat-button-toggle fxFlex="34" fxLayoutAlign="center center" value="laugh" (change)="updateSelectedReactions($event)">
-                      <div class="facebook__icon laugh"></div>
-                    </mat-button-toggle>
-
-                    <mat-button-toggle fxFlex="33" value="sad" (change)="updateSelectedReactions($event)">
-                      <div class="facebook__icon sad"></div>
-                    </mat-button-toggle>
-
-                    <mat-button-toggle fxFlex="33" value="love" (change)="updateSelectedReactions($event)">
-                      <div class="facebook__icon love"></div>
-                    </mat-button-toggle>
-                  </mat-button-toggle-group>
-                </div>
-              </div>
-
-              <div class="full-width" fxLayout="row wrap" fxLayoutAlign="space-between">
-                <mat-form-field fxFlex="49">
-                  <input matInput formControlName="socialComments" maxlength="9" appNumbersOnly
-                         [placeholder]="'FACEBOOK_SOCIAL_COMMENTS_TEXT' | translate" autocomplete="off">
-                </mat-form-field>
-
-                <mat-form-field fxFlex="49">
-                  <input matInput formControlName="socialShares" maxlength="9" appNumbersOnly
-                         [placeholder]="'FACEBOOK_SOCIAL_SHARES_TEXT' | translate" autocomplete="off">
-                </mat-form-field>
-              </div>
+              <app-upload-file fxFlex="25" matTooltip="Drag image here or click camera"
+                               matTooltipPosition="above" class="facebook__upload"
+                               (updateFile)="setPageLogo($event)"
+                               tagName="FACEBOOK_UPLOAD_LOGO_TEXT"></app-upload-file>
             </div>
-          </form>
+          </div>
         </div>
       </div>
-    </mat-tab>
 
-    <mat-tab>
-      <ng-template matTabLabel>
-        <mat-icon>videocam</mat-icon>
-        <span fxShow="false" fxShow.gt-sm translate>VIEW_TAB_GROUP_VIDEO</span>
-      </ng-template>
-      <div class="facebook-container">
-        <h1 translate>VIEW_TITLE_FACEBOOK</h1>
-        <h4 translate>VIEW_TAB_GROUP_VIDEO</h4>
-        <mat-card class="mat-elevation-z2">
-          <div>
-            Phasellus arcu lorem, aliquam quis est et, rutrum accumsan ante. Nam nibh elit, aliquet ac faucibus id, placerat sed sem. Nam sagittis massa quis porta luctus. Phasellus euismod purus urna, vel tempor felis bibendum quis. Nulla sed mauris sit amet libero condimentum dapibus. Proin dignissim erat aliquet aliquam sagittis. Integer eu quam eros. Vivamus eget ligula et diam euismod hendrerit sit amet sit amet arcu. Donec pretium viverra purus eget dapibus. Mauris ut diam sagittis, molestie
-          </div>
-        </mat-card>
+      <div fxLayout="column" class="full-width">
+        <mat-form-field class="facebook__textarea">
+          <textarea matInput matTextareaAutosize formControlName="postMessage"
+                    [placeholder]="'FACEBOOK_FIELD_POST_MSG_TEXT' | translate">
+          </textarea>
+        </mat-form-field>
+
+        <app-upload-file matTooltip="Drag image here or click camera"
+                         matTooltipPosition="above" class="facebook__upload"
+                         (updateFile)="setPageImage($event)"
+                         tagName="FACEBOOK_UPLOAD_IMAGE_TEXT"></app-upload-file>
       </div>
-    </mat-tab>
 
-    <mat-tab>
-      <ng-template matTabLabel>
-        <mat-icon>view_carousel</mat-icon>
-        <span fxShow="false" fxShow.gt-sm translate>VIEW_TAB_GROUP_CAROUSEL</span>
-      </ng-template>
-      <div class="facebook-container">
-        <h1 translate>VIEW_TITLE_FACEBOOK</h1>
-        <h4 translate>VIEW_TAB_GROUP_CAROUSEL</h4>
-        <mat-card class="mat-elevation-z2">
-          <div>
-            Quisque volutpat, nisi congue blandit cursus, orci enim dignissim mi, at tempor nisi massa condimentum magna. Nulla vel mollis tellus. Duis euismod, lectus ut pulvinar tristique, enim metus feugiat mi, ut bibendum nunc erat quis mauris. In consectetur molestie purus eu tincidunt. Proin vel odio quam. Ut ullamcorper lorem justo, vel fermentum nisl maximus et. Quisque vehicula risus sed dapibus varius. Donec et magna dolor. Proin eros ex, pharetra eget vehicula non, tincidunt vel est.
-          </div>
-        </mat-card>
+      <h4 translate>FACEBOOK_LINK_INFO_HEADER</h4>
+
+      <div class="facebook__text" translate>FACEBOOK_LINK_INFO_TEXT</div>
+      <div fxLayout="row" class="full-width">
+        <mat-form-field class="full-width">
+          <input matInput #linkUrlInput formControlName="linkUrl" [attr.maxlength]="LINK_URL_MAX_LEN"
+                 [placeholder]="'FACEBOOK_FIELD_LINK_URL_TEXT' | translate" autocomplete="off">
+          <mat-hint align="end">{{linkUrlInput.value?.length || 0}}/{{LINK_URL_MAX_LEN}}</mat-hint>
+        </mat-form-field>
       </div>
-    </mat-tab>
-  </mat-tab-group>
 
-  <app-ad-render-panel class="facebook-ad-render-panel" fxFlex="60"></app-ad-render-panel>
+      <div fxLayout="row" class="full-width">
+        <mat-form-field class="full-width">
+          <input matInput #linkDescInput formControlName="linkDesc" [attr.maxlength]="LINK_DESC_MAX_LEN"
+                 [placeholder]="'FACEBOOK_FIELD_LINK_DESC_TEXT' | translate" autocomplete="off">
+          <mat-hint align="end">{{linkDescInput.value?.length || 0}}/{{LINK_DESC_MAX_LEN}}</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" class="full-width">
+        <mat-form-field class="full-width">
+          <input matInput #linkCaptionInput formControlName="linkCaption" [attr.maxlength]="LINK_CAPTION_MAX_LEN"
+                 [placeholder]="'FACEBOOK_FIELD_LINK_CAPTION_TEXT' | translate" autocomplete="off">
+          <mat-hint align="end">{{linkCaptionInput.value?.length || 0}}/{{LINK_CAPTION_MAX_LEN}}</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="full-width" fxLayout="column">
+        <div fxLayout="row">
+          <mat-form-field fxFlex="49">
+            <mat-select [placeholder]="'FACEBOOK_FIELD_CTA_TEXT' | translate" formControlName="ctaButton">
+              <mat-option>{{'FACEBOOK_CTA_BTN_NONE' | translate}}</mat-option>
+              <mat-option *ngFor="let callToAction of CALL_TO_ACTION_OPTS" [value]="callToAction.value">
+                {{callToAction.translate | translate}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <h4 translate>FACEBOOK_SOCIAL_HEADER</h4>
+
+      <div class="full-width" fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-button-toggle-group class="facebook__btn-group full-width" fxLayout="row"
+                                 fxLayoutAlign="space-between" multiple
+                                 (change)="updateSelectedReactions($event)">
+          <mat-button-toggle fxFlex="100" value="like">
+            <div class="facebook__icon like"></div>
+          </mat-button-toggle>
+
+          <mat-button-toggle fxFlex="100" value="wow">
+            <div class="facebook__icon wow"></div>
+          </mat-button-toggle>
+
+          <mat-button-toggle fxFlex="100" value="angry">
+            <div class="facebook__icon angry"></div>
+          </mat-button-toggle>
+
+          <mat-button-toggle fxFlex="100" value="laugh">
+            <div class="facebook__icon laugh"></div>
+          </mat-button-toggle>
+
+          <mat-button-toggle fxFlex="100" value="sad">
+            <div class="facebook__icon sad"></div>
+          </mat-button-toggle>
+
+          <mat-button-toggle fxFlex="100" value="love">
+            <div class="facebook__icon love"></div>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+      <div class="full-width" fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="32">
+          <input matInput formControlName="socialLikes" maxlength="9" appNumbersOnly
+                 [placeholder]="'FACEBOOK_SOCIAL_LIKES_TEXT' | translate" autocomplete="off">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="32">
+          <input matInput formControlName="socialComments" maxlength="9" appNumbersOnly
+                 [placeholder]="'FACEBOOK_SOCIAL_COMMENTS_TEXT' | translate" autocomplete="off">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="32">
+          <input matInput formControlName="socialShares" maxlength="9" appNumbersOnly
+                 [placeholder]="'FACEBOOK_SOCIAL_SHARES_TEXT' | translate" autocomplete="off">
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
 </div>
