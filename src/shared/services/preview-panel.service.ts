@@ -5,7 +5,6 @@ import { Subject } from 'rxjs';
 export interface PreviewPanel {
   viewName: string;
   form: FormGroup;
-  tabSelection: string;
   defaults: {
     [key: string]: {
       [key: string]: string;
@@ -22,10 +21,9 @@ export class PreviewPanelService {
 
   constructor() {}
 
-  setForm(viewName = '', updatedForm: FormGroup, tabSelection: string, defaults: any) {
+  setForm(viewName = '', updatedForm: FormGroup, defaults: any) {
     this.previewPanel.viewName = viewName;
     this.previewPanel.form = updatedForm;
-    this.previewPanel.tabSelection = tabSelection;
     this.previewPanel.defaults = defaults;
 
     this.previewPanel$.next(this.previewPanel);

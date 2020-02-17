@@ -2,11 +2,11 @@
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <span class="facebook-container__header" translate>VIEW_TITLE_FACEBOOK</span>
 
-    <mat-form-field fxFlex="35" [formGroup]="facebookImageFormGroup">
+    <mat-form-field fxFlex="35" [formGroup]="facebookFormGroup">
       <mat-select formControlName="adType">
         <mat-select-trigger fxLayoutAlign="start center">
-          <mat-icon class="facebook-container__type-icon">{{facebookImageFormGroup.get('adType').value.icon}}</mat-icon>
-          <span>{{facebookImageFormGroup.get('adType').value.translate | translate}}</span>
+          <mat-icon class="facebook-container__type-icon">{{facebookFormGroup.get('adType').value.icon}}</mat-icon>
+          <span>{{facebookFormGroup.get('adType').value.translate | translate}}</span>
         </mat-select-trigger>
         <mat-option *ngFor="let type of FACEBOOK_AD_TYPES" [value]="type" [disabled]="type.value === 'video' || type.value ==='carousel'">
           <mat-icon>{{type.icon}}</mat-icon>
@@ -16,7 +16,7 @@
     </mat-form-field>
   </div>
 
-  <form [formGroup]="facebookImageFormGroup">
+  <form [formGroup]="facebookFormGroup">
     <div fxLayout="column" fxLayoutAlign="start start">
       <h4 translate>FACEBOOK_POST_INFO_HEADER</h4>
 
@@ -28,7 +28,7 @@
                 <input matInput #pageNameInput formControlName="pageName"
                        [placeholder]="'FACEBOOK_FIELD_PAGE_NAME_TEXT' | translate" autocomplete="off">
                 <mat-hint align="end">{{pageNameInput.value?.length || 0}}/{{PAGE_NAME_MAX_LEN}}</mat-hint>
-                <mat-error *ngIf="facebookImageFormGroup.get('pageName').invalid">Recommeneded Character Limit: {{PAGE_NAME_MAX_LEN}}</mat-error>
+                <mat-error *ngIf="facebookFormGroup.get('pageName').invalid">Recommeneded Character Limit: {{PAGE_NAME_MAX_LEN}}</mat-error>
               </mat-form-field>
 
               <app-upload-file fxFlex="25" matTooltip="Drag image here or click camera"

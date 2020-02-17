@@ -4,13 +4,13 @@
                  mat-stretch-tabs (selectedTabChange)="tabChange($event)">
     <mat-tab fxFlex="100" *ngFor="let tab of tabs; let i = index">
       <ng-template matTabLabel>
-        <mat-icon>web</mat-icon>
-      </ng-template>
+        <mat-icon class="form-panel__tab-icon">web</mat-icon>
 
-      <button mat-raised-button class="mat-raised-button--red form-panel__delete-btn"
-              (click)="removeTab()" [disabled]="tabs.length <= 1">
-        <mat-icon>close</mat-icon>
-      </button>
+        <button mat-button class="form-panel__delete-btn" (keydown)="removeTab($event)"
+                (click)="removeTab($event)" [disabled]="tabs.length <= 1">
+          <mat-icon>close</mat-icon>
+        </button>
+      </ng-template>
 
       <app-facebook [tabIndex]="i" [updateAdRenderPanel]="updateAdRenderPanel"></app-facebook>
     </mat-tab>

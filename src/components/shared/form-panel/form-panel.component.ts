@@ -60,10 +60,21 @@ export class FormPanelComponent implements OnInit {
     this.updateAdRenderPanel.next(this.tabIndex);
   }
 
-  removeTab(): void {
-    const index = this.tabIndex;
-    // update tabIndex position and tabs list
-    this.tabIndex = index > 1 ? index - 1 : 0;
-    this.tabs = this.tabs.filter((_, i) => i !== index);
+  removeTab($event: MouseEvent | KeyboardEvent): void {
+    if(
+      $event instanceof MouseEvent ||
+      $event instanceof KeyboardEvent &&
+      ($event.key === 'Enter' || $event.key === ' ')
+    ) {
+      $event.preventDefault();
+
+      const index = this.tabIndex;
+      // update tabIndex position and tabs list
+      this.tabIndex = index > 1 ? index - 1 : 0;
+      this.tabs = this.tabs.filter((_, i) => i !== index);
+
+      // update child ad render panel view on tab remove
+      this.updateAdRenderPanel.next(this.tabIndex);
+    }
   }
 }

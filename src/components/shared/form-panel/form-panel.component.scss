@@ -1,3 +1,5 @@
+@import 'src/styles/abstract/colors';
+
 .form-panel {
   width: 100%;
   height: 100%;
@@ -7,10 +9,32 @@
     position: relative;
   }
 
+  &__tab-icon {
+    padding-right: 8px;
+  }
+
   &__delete-btn {
     position: absolute;
-    right: 16px;
+    right: 4px;
     z-index: 2;
+    min-width: 20px;
+    width: 20px;
+    height: 20px;
+
+    .mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    &[disabled] {
+      .mat-icon {
+        color: rgba($color-kilamanjaro-gray, .26);
+      }
+    }
   }
 
   &__ad-render-panel {
